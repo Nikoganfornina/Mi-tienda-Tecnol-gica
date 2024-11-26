@@ -41,7 +41,7 @@ public class Main {
         // Tittle Characteristics
 
         JLabel tittle = new JLabel("Mi Tienda Tecnologica ");
-        tittle.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
+        tittle.setFont(new Font("Arial", Font.ITALIC, 28));
         tittle.setForeground(BLACK);
         tittle.setBounds(200, 0, 350, 150);
 
