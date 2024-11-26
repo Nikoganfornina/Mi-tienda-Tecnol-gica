@@ -41,11 +41,11 @@ public class Main {
 
         // Tittle Characteristics
 
-        JLabel tittle = new JLabel("Mi tienda Tecnologica ");
-        tittle.setFont(new Font("Arial", Font.BOLD, 24));
+        JLabel tittle = new JLabel("Mi Tienda Tecnologica ");
+        tittle.setFont(new Font("Arial", Font.ITALIC, 28));
         tittle.setForeground(BLACK);
         tittle.setBounds(200, 0, 350, 150);
-        tittle.setBorder(border);
+
 
         //Button home Characteristics
 
@@ -53,45 +53,29 @@ public class Main {
         home.setFont(new Font("Arial", Font.BOLD, 24));
         home.setForeground(BLACK);
         home.setBounds(700, 50, 150, 50);
-        home.setBorder(border);
+
         home.setHorizontalAlignment(SwingConstants.CENTER);
 
 
         // Products Characteristics
 
         JLabel products = new JLabel("P r o d u c t s");
-        products.setFont(new Font("Arial", Font.BOLD, 24));
+        products.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         products.setForeground(BLACK);
         products.setBounds(850, 50, 250, 50);
-        products.setBorder(border);
+
         products.setHorizontalAlignment(SwingConstants.CENTER);
 
 
-        // Contact Us Characteristics
 
-        JLabel contact = new JLabel("C o n t a c t  U s");
-        contact.setFont(new Font("Arial", Font.BOLD, 24));
-        contact.setBackground(ColorsNk.Verde_Nk);
-        contact.setForeground(WHITE);
-        contact.setOpaque(false);
-        contact.setHorizontalAlignment(SwingConstants.CENTER);
-        contact.setOpaque(true);
-        contact.setBounds(1100, 50, 250, 50);
+        // Contact Characteristics
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-
-        int radio = 30; // Radio del borde redondeado
-        Border bordeRedondeado = new LineBorder(Color.BLACK, 2, true);
-        panel.setBorder(bordeRedondeado);
-        panel.setBackground(ColorsNk.Verde_Nk);
-
-        panel.add(contact, BorderLayout.CENTER);
-
-        ventana1.add(panel);
-
-
-
+        RoundedBorder contact = new RoundedBorder("C o n t a c t  U s", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
+        contact.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
+        contact.setForeground(Color.WHITE);
+        contact.setBounds(1150, 50, 250, 50); // Posición y tamaño
+        addLabelHoverEffect(contact, 1, 1.05);
+        addLabelClickEffect(contact, 1, 1.1);
         // ImagenIcon icon add
 
         ImageIcon seticon = resizeimage(("Images/logoT.png"), 0.5);
@@ -99,15 +83,10 @@ public class Main {
         icon.setBounds(70, 25, seticon.getIconWidth(), seticon.getIconHeight());
 
         header.add(icon);
-        icon.setBorder(border);
         header.add(tittle);
         header.add(home);
         header.add(products);
         header.add(contact);
-
-
-
-
 
         //END FRAME
         ventana1.setVisible(true);
@@ -155,7 +134,62 @@ public class Main {
                 label.setIcon(resizedOriginalIcon); // Revert to original size
             }
         });
+
     }
+
+    public static void addLabelHoverEffect(JLabel label, double originalPercentage, double hoverPercentage) {
+        // Guardamos el tamaño original del JLabel
+        Dimension originalSize = label.getSize();
+
+        // Calculamos los tamaños basados en porcentajes
+        int originalWidth = (int) (originalSize.width * originalPercentage);
+        int originalHeight = (int) (originalSize.height * originalPercentage);
+        int hoverWidth = (int) (originalSize.width * hoverPercentage);
+        int hoverHeight = (int) (originalSize.height * hoverPercentage);
+
+        label.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                // Cambiar el tamaño del JLabel al tamaño de hover
+                label.setBounds(label.getX(), label.getY(), hoverWidth, hoverHeight);
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                // Restaurar el tamaño original
+                label.setBounds(label.getX(), label.getY(), originalWidth, originalHeight);
+            }
+        });
+    }
+
+    public static void addLabelClickEffect(JLabel label, double originalPercentage, double clickedPercentage) {
+        // Guardamos el tamaño original del JLabel
+        Dimension originalSize = label.getSize();
+
+        // Calculamos los tamaños basados en porcentajes
+        int originalWidth = (int) (originalSize.width * originalPercentage);
+        int originalHeight = (int) (originalSize.height * originalPercentage);
+        int clickedWidth = (int) (originalSize.width * clickedPercentage);
+        int clickedHeight = (int) (originalSize.height * clickedPercentage);
+
+        label.addMouseListener(new java.awt.event.MouseAdapter() {
+            private boolean isClicked = false; // Para alternar entre los dos tamaños
+
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                if (!isClicked) {
+                    // Cambiar al tamaño de clic (expandir)
+                    label.setBounds(label.getX(), label.getY(), clickedWidth, clickedHeight);
+                } else {
+                    // Restaurar al tamaño original
+                    label.setBounds(label.getX(), label.getY(), originalWidth, originalHeight);
+                }
+                isClicked = !isClicked; // Alternar el estado para el siguiente clic
+            }
+        });
+    }
+
+
 
     // Method to add click effect with ImageIcon
     public static void addEfectClick(JLabel label, String originalIcon, double originalPercentage, double clickPercentage) {
