@@ -54,6 +54,8 @@ public class Main {
         home.setForeground(BLACK);
         home.setBounds(700, 50, 150, 50);
         home.setBorder(border);
+        home.setHorizontalAlignment(SwingConstants.CENTER);
+
 
         // Products Characteristics
 
@@ -62,20 +64,33 @@ public class Main {
         products.setForeground(BLACK);
         products.setBounds(850, 50, 250, 50);
         products.setBorder(border);
+        products.setHorizontalAlignment(SwingConstants.CENTER);
+
 
         // Contact Us Characteristics
 
         JLabel contact = new JLabel("C o n t a c t  U s");
         contact.setFont(new Font("Arial", Font.BOLD, 24));
-        contact.setBackground(WHITE);
-        contact.setForeground(BLACK);
+        contact.setBackground(ColorsNk.Verde_Nk);
+        contact.setForeground(WHITE);
         contact.setOpaque(false);
-        int radius = 45;
-        Border borderradius = new LineBorder(BLACK, 2, true);
-        contact.setBorder(borderradius);
-
+        contact.setHorizontalAlignment(SwingConstants.CENTER);
         contact.setOpaque(true);
         contact.setBounds(1100, 50, 250, 50);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+
+        int radio = 30; // Radio del borde redondeado
+        Border bordeRedondeado = new LineBorder(Color.BLACK, 2, true);
+        panel.setBorder(bordeRedondeado);
+        panel.setBackground(ColorsNk.Verde_Nk);
+
+        panel.add(contact, BorderLayout.CENTER);
+
+        ventana1.add(panel);
+
+
 
         // ImagenIcon icon add
 
