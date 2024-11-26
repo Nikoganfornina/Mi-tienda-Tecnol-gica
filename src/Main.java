@@ -30,6 +30,7 @@ public class Main {
                 ((JLabel) component).setOpaque(false);
             }
         }
+        
         // Header label characteristics
 
         JLabel header = new JLabel();
@@ -48,12 +49,11 @@ public class Main {
 
         // ImagenIcon icon add
 
-        ImageIcon seticon = resizeimage(("Images/logoT.png"), 1);
+        ImageIcon seticon = resizeimage(("Images/logoT.png"), 0.5);
 
         JLabel icon = new JLabel(seticon);
 
-        icon.setBounds(50, 50, seticon.getIconWidth(), seticon.getIconHeight());
-
+        icon.setBounds(50, 25, seticon.getIconWidth(), seticon.getIconHeight());
 
         header.add(icon);
         icon.setBorder(border);
