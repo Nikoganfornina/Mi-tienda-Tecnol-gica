@@ -1,6 +1,9 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.io.File;
 
 public class Main {
 
@@ -9,6 +12,12 @@ public class Main {
 
         // JFrame characteristics
 
+        File icono = new File("Images/logo_header.png");
+        System.out.println(icono.exists());
+
+        // If there is any JLabel in the project, set opaque to false
+
+
         JFrame ventana1 = new JFrame("Ventana 1");
         ventana1.setSize(1500, 800);
         ventana1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -16,30 +25,50 @@ public class Main {
         ventana1.setResizable(false);
         ventana1.setLayout(null);
 
+        for (Component component : ventana1.getComponents()) {
+            if (component instanceof JLabel) {
+                ((JLabel) component).setOpaque(false);
+            }
+        }
         // Header label characteristics
 
-        JLabel header = new JLabel("Header");
-        header.setFont(new Font("Arial", Font.BOLD, 20));
-        header.setForeground(Color.BLACK);
-        header.setBounds(0, 0, 1500, 50);
-        header.setOpaque(true);
+        JLabel header = new JLabel();
+        ventana1.add(header);
+        header.setBounds(0, 0, 1500, 150);
+        Border border = new LineBorder(Color.BLACK, 2);
+        header.setBorder(border);
+
+        // Tittle Characteristics
+
+        JLabel tittle = new JLabel("Mi tienda Tecnologica ");
+        tittle.setFont(new Font("Arial", Font.BOLD, 20));
+        tittle.setForeground(Color.BLACK);
+        tittle.setBounds(200, 0, 350, 150);
+        tittle.setBorder(border);
 
         // ImagenIcon icon add
 
-        ImageIcon seticon = resizeimage(new ImageIcon("Images/logo_header.png"), 0.5);
+        ImageIcon seticon = resizeimage(("Images/logoT.png"), 1);
+
         JLabel icon = new JLabel(seticon);
+
+        icon.setBounds(50, 50, seticon.getIconWidth(), seticon.getIconHeight());
+
+
         header.add(icon);
+        icon.setBorder(border);
+        header.add(tittle);
+        ventana1.add(icon);
 
-        // Add Objects
-        ventana1.add(header);
 
+        //END FRAME
         ventana1.setVisible(true);
-
     }
 
     // Method to resize the image
-    public static ImageIcon resizeimage(ImageIcon icon, double porcentaje) {
+    public static ImageIcon resizeimage(String ruta, double porcentaje) {
 
+        ImageIcon icon = new ImageIcon(ruta);
         int anchoOriginal = icon.getIconWidth();
         int altoOriginal = icon.getIconHeight();
 
@@ -58,14 +87,11 @@ public class Main {
         imagen.setBounds(x, y, imagen.getIcon().getIconWidth(), imagen.getIcon().getIconHeight());
     }
 
-    //Method who change the position of the label without change de width and height
-    public static void moveLabel(JLabel label, int x, int y) {
-        label.setLocation(x, y);
-    }
+
 
 
     // Method to add hover effect with ImageIcon
-    public static void addEfectHover(JLabel label, ImageIcon originalIcon, double originalPercentage, double hoverPercentage) {
+    public static void addEfectHover(JLabel label, String originalIcon, double originalPercentage, double hoverPercentage) {
         // Resize the image in advance to avoid recalculating it during each event
         ImageIcon resizedHoverIcon = resizeimage(originalIcon, hoverPercentage);
         ImageIcon resizedOriginalIcon = resizeimage(originalIcon, originalPercentage);
@@ -84,7 +110,7 @@ public class Main {
     }
 
     // Method to add click effect with ImageIcon
-    public static void addEfectClick(JLabel label, ImageIcon originalIcon, double originalPercentage, double clickPercentage) {
+    public static void addEfectClick(JLabel label, String originalIcon, double originalPercentage, double clickPercentage) {
         // Resize the image in advance to avoid recalculating it during each event
         ImageIcon resizedClickIcon = resizeimage(originalIcon, clickPercentage);
         ImageIcon resizedOriginalIcon = resizeimage(originalIcon, originalPercentage);
