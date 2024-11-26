@@ -76,11 +76,19 @@ public class Main {
         contact.setBounds(1150, 50, 250, 50); // Posición y tamaño
         addLabelHoverEffect(contact, 1, 1.05);
         addLabelClickEffect(contact, 1, 1.1);
+
         // ImagenIcon icon add
+
 
         ImageIcon seticon = resizeimage(("Images/logoT.png"), 0.5);
         JLabel icon = new JLabel(seticon);
         icon.setBounds(70, 25, seticon.getIconWidth(), seticon.getIconHeight());
+
+        ImageIcon seticon2 = resizeimage(("Images/Image_main.png"), 1.2);
+
+        JLabel icon2 = new JLabel(seticon2);
+
+        icon2.setBounds(220, 200, seticon2.getIconWidth(), seticon2.getIconHeight());
 
         header.add(icon);
         header.add(tittle);
@@ -89,6 +97,7 @@ public class Main {
         header.add(contact);
 
         //END FRAME
+        ventana1.add(icon2);
         ventana1.setVisible(true);
 
 
