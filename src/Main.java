@@ -1,24 +1,46 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-
-        JFrame ventana = new JFrame("Tienda Tecnologica");
-
-        ventana.setLayout(null);
 
 
-        ventana.setSize(1500, 1000);
-        ventana.setResizable(false);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // ventana.setUndecorated(true);
-        ventana.setVisible(true);
+    static void Creacionventana() {
 
-        JButton boton = new JButton();
+        // JFrame characteristics
 
+        JFrame ventana1 = new JFrame("Ventana 1");
+        ventana1.setSize(1500, 800);
+        ventana1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana1.setResizable(false);
+        ventana1.setLayout(null);
+
+        // Header label characteristics
+
+        JLabel header = new JLabel("Header");
+        header.setFont(new Font("Arial", Font.BOLD, 20));
+        header.setBackground(Color.WHITE);
+        header.setForeground(Color.BLACK);
+        header.setBounds(0, 0, 1500, 50);
+        header.setOpaque(true);
+
+        // ImagenIcon icon add
+
+        ImageIcon icon = new ImageIcon("Images/logo_header.png");
+        icon.setImage(icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH));
+
+
+        header.setIcon(icon);
+
+        // Add Objects
+        ventana1.add(header);
+        ventana1.setVisible(true);
 
     }
+
+    // Method to resize the image
     public static ImageIcon redimensionarImagen(String rutaImagen, double porcentaje) {
         ImageIcon imagenOriginal = new ImageIcon(rutaImagen);
 
@@ -39,6 +61,7 @@ public class Main {
     public static void posicionarImagen(JLabel imagen, int x, int y) {
         imagen.setBounds(x, y, imagen.getIcon().getIconWidth(), imagen.getIcon().getIconHeight());
     }
+
     public static void agregarEfectoHover(JLabel label, String rutaImagen, double porcentajeOriginal, double porcentajeHover) {
         label.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -67,4 +90,11 @@ public class Main {
             }
         });
     }
+
+
+    public static void main(String[] args) {
+        Creacionventana();
+
+    }
+
 }
