@@ -54,10 +54,15 @@ public class Main {
     }
 
     // Method to position the images
-    public static void positionLabel(JLabel imagen, int x, int y) {
+    public static void positionImage(JLabel imagen, int x, int y) {
         imagen.setBounds(x, y, imagen.getIcon().getIconWidth(), imagen.getIcon().getIconHeight());
     }
-   
+
+    //Method who change the position of the label without change de width and height
+    public static void moveLabel(JLabel label, int x, int y) {
+        label.setLocation(x, y);
+    }
+
 
     // Method to add hover effect with ImageIcon
     public static void addEfectHover(JLabel label, ImageIcon originalIcon, double originalPercentage, double hoverPercentage) {
