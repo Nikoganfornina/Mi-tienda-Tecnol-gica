@@ -95,7 +95,6 @@ public class Main {
         ventana1.add(Footer);
         Footer.setBounds(0, 550, 1500, 300);
         Border footerBorder = new LineBorder(BLACK, 2);
-        Footer.setBorder(footerBorder);
 
         //Text in the footer
 
@@ -123,8 +122,31 @@ public class Main {
         addLabelHoverEffect(LearnMore, 1, 1.05);
         addLabelClickEffect(LearnMore, 1, 1.1);
 
+        //Image in Footer1
+
+        ImageIcon seticon2 = resizeimage(("Images/fotof1.png"), 0.9);
+        RoundedImageIcon f2 = new RoundedImageIcon(seticon2, 25);
+        f2.setBounds(550, 0, seticon2.getIconWidth(), seticon2.getIconHeight());
+        Footer.add(f2);
+
+        //Image in Footer2
+
+        ImageIcon seticon3 = resizeimage(("Images/fotof2.png"), 0.91);
+        RoundedImageIcon f3 = new RoundedImageIcon(seticon3, 25);
+        f3.setBounds(850, 0, seticon2.getIconWidth(), seticon2.getIconHeight());
+        Footer.add(f3);
+
+        //Image in Footer3
+
+        ImageIcon seticon4 = resizeimage(("Images/fotof3.png"), 0.92);
+        RoundedImageIcon f4 = new RoundedImageIcon(seticon4, 25);
+        f4.setBounds(1150, 0, seticon2.getIconWidth(), seticon2.getIconHeight());
+        Footer.add(f4);
+
+
+
         //-------------------------
-        
+
         Footer.add(textf);
         Footer.add(textf2);
         Footer.add(LearnMore);
