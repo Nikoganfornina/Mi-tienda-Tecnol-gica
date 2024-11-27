@@ -11,10 +11,6 @@ public class Main {
 
 
     static void Creacionventana() {
-
-
-
-
         // JFrame characteristics
 
         File icono = new File("Images/logo_header.png");
@@ -22,14 +18,12 @@ public class Main {
 
         // If there is any JLabel in the project, set opaque to false
 
-
         JFrame ventana1 = new JFrame("Ventana 1");
         ventana1.setSize(1500, 900);
         ventana1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana1.setBackground(WHITE);
         ventana1.setResizable(false);
         ventana1.setLayout(null);
-
 
         // Header label characteristics
 
@@ -45,16 +39,14 @@ public class Main {
         tittle.setForeground(BLACK);
         tittle.setBounds(200, 0, 350, 150);
 
-
         //Button home Characteristics
 
-        JLabel home = new JLabel("H o m e");
+        JLabel home = new JLabel("U S E R S ");
         home.setFont(new Font("Arial", Font.BOLD, 24));
         home.setForeground(BLACK);
         home.setBounds(700, 40, 150, 50);
-
         home.setHorizontalAlignment(SwingConstants.CENTER);
-
+        addLabelHoverEffect(home, 1, 1.05);
 
         // Products Characteristics
 
@@ -62,10 +54,8 @@ public class Main {
         products.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         products.setForeground(BLACK);
         products.setBounds(850, 40, 250, 50);
-
         products.setHorizontalAlignment(SwingConstants.CENTER);
-
-
+        addLabelHoverEffect(products, 1, 1.05);
 
         // Contact Characteristics
 
@@ -80,20 +70,20 @@ public class Main {
 
         ImageIcon seticon = resizeimage(("Images/logoT.png"), 0.3);
         JLabel icon = new JLabel(seticon);
-        icon.setBounds(125, 40, seticon.getIconWidth(), seticon.getIconHeight());
+        icon.setBounds(125, 45, seticon.getIconWidth(), seticon.getIconHeight());
 
 
         // ImagenIcon icon2 add
         ImageIcon Techzone = resizeimage("Images/Techzone.png", 0.98);
         RoundedImageIcon homeIcon = new RoundedImageIcon(Techzone, 25);
-        homeIcon.setBounds(125, 150, Techzone.getIconWidth(), 350);
+        homeIcon.setBounds(125, 135, Techzone.getIconWidth(), 350);
         ventana1.add(homeIcon);
 
         //Footer Label
 
         JLabel Footer = new JLabel();
         ventana1.add(Footer);
-        Footer.setBounds(0, 550, 1500, 300);
+        Footer.setBounds(0, 525, 1500, 300);
         Border footerBorder = new LineBorder(BLACK, 2);
 
         //Text in the footer
@@ -143,15 +133,13 @@ public class Main {
         f4.setBounds(1150, 0, seticon2.getIconWidth(), seticon2.getIconHeight());
         Footer.add(f4);
 
-
-
-        //-------------------------
+        //------------- FOOTER ADDS ------------
 
         Footer.add(textf);
         Footer.add(textf2);
         Footer.add(LearnMore);
 
-        //-----------------------------
+        //------------ HEADER ADDS -------------
         header.add(icon);
         header.add(tittle);
         header.add(home);
@@ -161,8 +149,6 @@ public class Main {
         //END FRAME
 
         ventana1.setVisible(true);
-
-
     }
 
     // Method to resize the image
