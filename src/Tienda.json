@@ -1,0 +1,198 @@
+{
+  "tienda": {
+    "nombre": "Mi Tienda Online",
+    "categorias": [
+      {
+        "id": 1,
+        "nombre": "Electrónica",
+        "productos": [
+          {
+            "id": 101,
+            "nombre": "Smartphone Galaxy S23",
+            "precio": 999.99,
+            "descripcion": "El último smartphone del mercado con pantalla AMOLED.",
+            "caracteristicas": {
+              "pantalla": "6.5 pulgadas",
+              "camara": "50 MP",
+              "bateria": "5000 mAh"
+            },
+            "inventario": 50
+          },
+          {
+            "id": 102,
+            "nombre": "Laptop Dell XPS 13",
+            "precio": 1499.99,
+            "descripcion": "Laptop ultradelgada de alto rendimiento con pantalla 4K.",
+            "caracteristicas": {
+              "pantalla": "13.3 pulgadas",
+              "procesador": "Intel i7",
+              "ram": "16 GB"
+            },
+            "inventario": 30
+          },
+          {
+            "id": 103,
+            "nombre": "Smartwatch Apple Watch Series 8",
+            "precio": 399.99,
+            "descripcion": "Reloj inteligente con múltiples funciones de salud y conectividad.",
+            "caracteristicas": {
+              "pantalla": "1.7 pulgadas",
+              "conectividad": "Wi-Fi, Bluetooth",
+              "bateria": "18 horas"
+            },
+            "inventario": 100
+          },
+          {
+            "id": 104,
+            "nombre": "Auriculares Sony WH-1000XM5",
+            "precio": 349.99,
+            "descripcion": "Auriculares inalámbricos con cancelación de ruido avanzada.",
+            "caracteristicas": {
+              "conectividad": "Bluetooth",
+              "bateria": "30 horas de autonomía",
+              "compatibilidad": "Android, iOS"
+            },
+            "inventario": 75
+          },
+          {
+            "id": 105,
+            "nombre": "Tablet Samsung Galaxy Tab S8",
+            "precio": 649.99,
+            "descripcion": "Tablet Android con pantalla Super AMOLED y soporte para S-Pen.",
+            "caracteristicas": {
+              "pantalla": "11 pulgadas",
+              "procesador": "Snapdragon 8 Gen 1",
+              "bateria": "8000 mAh"
+            },
+            "inventario": 40
+          },
+          {
+            "id": 106,
+            "nombre": "Cámara DSLR Canon EOS 90D",
+            "precio": 1299.99,
+            "descripcion": "Cámara profesional con sensor de 32.5 MP y grabación en 4K.",
+            "caracteristicas": {
+              "resolucion": "32.5 MP",
+              "pantalla": "3 pulgadas táctil",
+              "bateria": "1300 disparos"
+            },
+            "inventario": 20
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "nombre": "Accesorios de Computación",
+        "productos": [
+          {
+            "id": 107,
+            "nombre": "Teclado Mecánico Logitech G Pro X",
+            "precio": 129.99,
+            "descripcion": "Teclado mecánico con switches intercambiables y retroiluminación RGB.",
+            "caracteristicas": {
+              "switches": "GX Blue",
+              "conectividad": "USB-C",
+              "retroiluminacion": "RGB"
+            },
+            "inventario": 150
+          },
+          {
+            "id": 108,
+            "nombre": "Ratón Razer DeathAdder V2",
+            "precio": 69.99,
+            "descripcion": "Ratón ergonómico para juegos con sensor óptico de 20,000 DPI.",
+            "caracteristicas": {
+              "dpi": "20,000",
+              "conectividad": "Cable",
+              "botones": "8 programables"
+            },
+            "inventario": 200
+          },
+          {
+            "id": 109,
+            "nombre": "Monitor LG 27GN950-B",
+            "precio": 749.99,
+            "descripcion": "Monitor UltraGear 4K con frecuencia de actualización de 144Hz.",
+            "caracteristicas": {
+              "tamaño": "27 pulgadas",
+              "resolucion": "4K",
+              "frecuencia": "144Hz"
+            },
+            "inventario": 60
+          }
+        ]
+      }
+    ],
+    "usuarios": [
+      {
+        "id": 1,
+        "nombre": "Juan Pérez",
+        "email": "juanperez@example.com",
+        "direccion": {
+          "calle": "Calle Principal",
+          "numero": 123,
+          "ciudad": "Madrid",
+          "pais": "España"
+        },
+        "historialCompras": [
+          {
+            "productoId": 101,
+            "cantidad": 1,
+            "fecha": "2023-11-14"
+          },
+          {
+            "productoId": 107,
+            "cantidad": 2,
+            "fecha": "2023-11-15"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "nombre": "Ana López",
+        "email": "analópez@example.com",
+        "direccion": {
+          "calle": "Calle Secundaria",
+          "numero": 45,
+          "ciudad": "Barcelona",
+          "pais": "España"
+        },
+        "historialCompras": [
+          {
+            "productoId": 103,
+            "cantidad": 1,
+            "fecha": "2023-11-16"
+          },
+          {
+            "productoId": 108,
+            "cantidad": 1,
+            "fecha": "2023-11-17"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "nombre": "Carlos Gómez",
+        "email": "carlosgomez@example.com",
+        "direccion": {
+          "calle": "Avenida Libertad",
+          "numero": 789,
+          "ciudad": "Sevilla",
+          "pais": "España"
+        },
+        "historialCompras": [
+          {
+            "productoId": 104,
+            "cantidad": 1,
+            "fecha": "2023-11-18"
+          },
+          {
+            "productoId": 102,
+            "cantidad": 1,
+            "fecha": "2023-11-19"
+          }
+        ]
+      }
+    ]
+  }
+}
