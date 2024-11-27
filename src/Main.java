@@ -65,6 +65,8 @@ public class Main {
         contact.setBounds(1150, 40, 250, 50);
         addLabelHoverEffect(contact, 1, 1.05);
         addLabelClickEffect(contact, 1, 1.1);
+        contact.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+
 
         // ImagenIcon icon add
 
@@ -111,6 +113,8 @@ public class Main {
         LearnMore.setBounds(120, 210, 250, 50);
         addLabelHoverEffect(LearnMore, 1, 1.05);
         addLabelClickEffect(LearnMore, 1, 1.1);
+        LearnMore.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+
 
         //Image in Footer1
 
