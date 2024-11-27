@@ -123,6 +123,7 @@ public class ProductsFrame {
         addLabelClickEffect(next, 1, 1.1);
         ventana1.add(next);
 
+
         // after Characteristics
 
         RoundedBorder after = new RoundedBorder(" A n t e r i o r ", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
@@ -135,7 +136,6 @@ public class ProductsFrame {
         ventana1.add(after);
 
         //------------ HEADER ADDS -------------
-
         header.add(icon);
         header.add(tittle);
         header.add(home);
