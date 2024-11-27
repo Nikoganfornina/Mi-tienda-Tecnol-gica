@@ -24,7 +24,7 @@ public class Main {
 
 
         JFrame ventana1 = new JFrame("Ventana 1");
-        ventana1.setSize(1500, 800);
+        ventana1.setSize(1500, 900);
         ventana1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana1.setBackground(WHITE);
         ventana1.setResizable(false);
@@ -72,16 +72,15 @@ public class Main {
         RoundedBorder contact = new RoundedBorder("C o n t a c t  U s", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
         contact.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         contact.setForeground(Color.WHITE);
-        contact.setBounds(1150, 40, 250, 50); // Posición y tamaño
+        contact.setBounds(1150, 40, 250, 50);
         addLabelHoverEffect(contact, 1, 1.05);
         addLabelClickEffect(contact, 1, 1.1);
 
         // ImagenIcon icon add
 
-
         ImageIcon seticon = resizeimage(("Images/logoT.png"), 0.3);
         JLabel icon = new JLabel(seticon);
-        icon.setBounds(125, 35, seticon.getIconWidth(), seticon.getIconHeight());
+        icon.setBounds(125, 40, seticon.getIconWidth(), seticon.getIconHeight());
 
 
         // ImagenIcon icon2 add
@@ -90,7 +89,36 @@ public class Main {
         homeIcon.setBounds(125, 150, Techzone.getIconWidth(), 350);
         ventana1.add(homeIcon);
 
+        //Footer Label
 
+        JLabel Footer = new JLabel();
+        ventana1.add(Footer);
+        Footer.setBounds(0, 550, 1500, 250);
+        Border footerBorder = new LineBorder(BLACK, 2);
+        Footer.setBorder(footerBorder);
+
+        //Text in the footer
+
+        JLabel textf = new JLabel("<html>Let's Explore The<br>World with Us</html>");
+        textf.setFont(new Font("Arial", Font.BOLD, 34));
+        textf.setForeground(BLACK);
+        textf.setBounds(125, 10, 400, 100);
+        textf.setHorizontalAlignment(SwingConstants.LEFT);
+
+
+        //Text in the footer 2
+
+        JLabel textf2 = new JLabel("<html>TechZone: <b> el paraíso de los geeks.</b> PCs brutales, <br> gadgets futuristas y luces LED que te hipnotizan.<br>Aquí vienes por un cable y sales con medio servidor.<br><b>Tu zona, tu tecnología.</b></html>");
+        textf2.setFont(new Font("Arial", Font.PLAIN, 14));
+        textf2.setForeground(gray);
+        textf2.setBounds(125, 100, 400, 100);
+        textf2.setHorizontalAlignment(SwingConstants.LEFT);
+
+        //-------------------------
+        Footer.add(textf);
+        Footer.add(textf2);
+
+        //-----------------------------
         header.add(icon);
         header.add(tittle);
         header.add(home);
