@@ -93,7 +93,7 @@ public class Main {
 
         JLabel Footer = new JLabel();
         ventana1.add(Footer);
-        Footer.setBounds(0, 550, 1500, 250);
+        Footer.setBounds(0, 550, 1500, 300);
         Border footerBorder = new LineBorder(BLACK, 2);
         Footer.setBorder(footerBorder);
 
@@ -114,9 +114,20 @@ public class Main {
         textf2.setBounds(125, 100, 400, 100);
         textf2.setHorizontalAlignment(SwingConstants.LEFT);
 
+        //Button in Footer
+
+        RoundedBorder LearnMore = new RoundedBorder("L e a r n  M o r e", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
+        LearnMore.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
+        LearnMore.setForeground(Color.WHITE);
+        LearnMore.setBounds(120, 210, 250, 50);
+        addLabelHoverEffect(LearnMore, 1, 1.05);
+        addLabelClickEffect(LearnMore, 1, 1.1);
+
         //-------------------------
+        
         Footer.add(textf);
         Footer.add(textf2);
+        Footer.add(LearnMore);
 
         //-----------------------------
         header.add(icon);
