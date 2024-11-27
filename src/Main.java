@@ -51,7 +51,7 @@ public class Main {
         JLabel home = new JLabel("H o m e");
         home.setFont(new Font("Arial", Font.BOLD, 24));
         home.setForeground(BLACK);
-        home.setBounds(700, 50, 150, 50);
+        home.setBounds(700, 40, 150, 50);
 
         home.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -61,7 +61,7 @@ public class Main {
         JLabel products = new JLabel("P r o d u c t s");
         products.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         products.setForeground(BLACK);
-        products.setBounds(850, 50, 250, 50);
+        products.setBounds(850, 40, 250, 50);
 
         products.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -72,7 +72,7 @@ public class Main {
         RoundedBorder contact = new RoundedBorder("C o n t a c t  U s", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
         contact.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         contact.setForeground(Color.WHITE);
-        contact.setBounds(1150, 50, 250, 50); // Posición y tamaño
+        contact.setBounds(1150, 40, 250, 50); // Posición y tamaño
         addLabelHoverEffect(contact, 1, 1.05);
         addLabelClickEffect(contact, 1, 1.1);
 
@@ -81,13 +81,15 @@ public class Main {
 
         ImageIcon seticon = resizeimage(("Images/logoT.png"), 0.3);
         JLabel icon = new JLabel(seticon);
-        icon.setBounds(125, 45, seticon.getIconWidth(), seticon.getIconHeight());
+        icon.setBounds(125, 35, seticon.getIconWidth(), seticon.getIconHeight());
 
-        ImageIcon seticon2 = resizeimage(("Images/Image_main.png"), 1.2);
 
-        JLabel icon2 = new JLabel(seticon2);
+        // ImagenIcon icon2 add
+        ImageIcon Techzone = resizeimage("Images/Techzone.png", 0.98);
+        RoundedImageIcon homeIcon = new RoundedImageIcon(Techzone, 25);
+        homeIcon.setBounds(125, 150, Techzone.getIconWidth(), 350);
+        ventana1.add(homeIcon);
 
-        icon2.setBounds(220, 200, seticon2.getIconWidth(), seticon2.getIconHeight());
 
         header.add(icon);
         header.add(tittle);
@@ -96,7 +98,7 @@ public class Main {
         header.add(contact);
 
         //END FRAME
-        ventana1.add(icon2);
+
         ventana1.setVisible(true);
 
 
