@@ -1,7 +1,11 @@
+import Utilities.ColorsNk;
+import Utilities.RoundedBorder;
+import Utilities.RoundedImageIcon;
+
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
@@ -28,11 +32,29 @@ public class ProductsFrame {
 
 
         // Tittle Characteristics
-
         JLabel tittle = new JLabel("Mi Tienda Tecnologica ");
         tittle.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
-        tittle.setForeground(BLACK);
+        tittle.setForeground(Color.BLACK); // Asegúrate de usar Color.BLACK si no tienes una constante BLACK
         tittle.setBounds(200, 0, 350, 150);
+        addLabelHoverEffect(tittle, 1, 1.05);
+        addLabelClickEffect(tittle, 1, 1.1);
+
+
+        // Añadir evento para hacer clic en el título y regresar a la ventana principal
+
+        tittle.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                new Main().Creacionventana();
+
+                // Cerrar el frame actual
+                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(tittle);
+                if (currentFrame != null) {
+                    currentFrame.dispose();  // Cerrar el frame actual
+                }
+            }
+        });
 
         //Button home Characteristics
 
@@ -68,10 +90,16 @@ public class ProductsFrame {
         JLabel icon = new JLabel(seticon);
         icon.setBounds(125, 45, seticon.getIconWidth(), seticon.getIconHeight());
 
+        //  Home Icon add
+
+        ImageIcon HomeIcon = resizeimage(("Images/HomeSvg.svg"), 1.25);
+        RoundedImageIcon RoundedHomeIcon = new RoundedImageIcon(HomeIcon, 25);
+        RoundedHomeIcon.setBounds(500, 55, HomeIcon.getIconWidth(), HomeIcon.getIconHeight());
+
         // BackGround center  page
 
         RoundedBorder backgroundc = new RoundedBorder( "" , ColorsNk.Verde_Nk, 30);
-        backgroundc.setBounds(125 , 150, 1275, 600);
+        backgroundc.setBounds(125 , 125, 1275, 600);
         backgroundc.setOpaque(false);
         backgroundc.setBorderProperties(ColorsNk.Transparent_Nk, 1);
 
@@ -112,13 +140,14 @@ public class ProductsFrame {
         product3.setBorderProperties(Color.white, 5);
         backgroundc.add(product3);
 
+
         // next Characteristics
 
         RoundedBorder next = new RoundedBorder(" S i g u i e n t e ", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
         next.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         next.setForeground(Color.WHITE);
         next.setBorderProperties(ColorsNk.Transparent_Nk, 1);
-        next.setBounds(830, 780, 250, 50);
+        next.setBounds(830, 765, 250, 50);
         addLabelHoverEffect(next, 1, 1.05);
         addLabelClickEffect(next, 1, 1.1);
         ventana1.add(next);
@@ -129,7 +158,7 @@ public class ProductsFrame {
         after.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         after.setForeground(Color.WHITE);
         after.setBorderProperties(ColorsNk.Transparent_Nk, 1);
-        after.setBounds(470, 780, 250, 50);
+        after.setBounds(470, 765, 250, 50);
         addLabelHoverEffect(after, 1, 1.05);
         addLabelClickEffect(after, 1, 1.1);
         ventana1.add(after);
@@ -141,6 +170,7 @@ public class ProductsFrame {
         header.add(home);
         header.add(products);
         header.add(contact);
+        header.add(RoundedHomeIcon);
 
         // -------------- CENTER ADDS -----------
          ventana1.add(backgroundc);

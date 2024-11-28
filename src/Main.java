@@ -1,8 +1,13 @@
+import Utilities.ColorsNk;
+import Utilities.RoundedBorder;
+import Utilities.RoundedImageIcon;
+
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 
 import static java.awt.Color.*;
@@ -38,6 +43,10 @@ public class Main {
         tittle.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
         tittle.setForeground(BLACK);
         tittle.setBounds(200, 0, 350, 150);
+        addLabelHoverEffect(tittle, 1, 1.05);
+        addLabelClickEffect(tittle, 1, 1.1);
+
+
 
         //Button home Characteristics
 
@@ -49,13 +58,29 @@ public class Main {
         addLabelHoverEffect(home, 1, 1.05);
 
         // Products Characteristics
-
         JLabel products = new JLabel("P r o d u c t s");
         products.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
-        products.setForeground(BLACK);
+        products.setForeground(Color.BLACK);
         products.setBounds(850, 40, 250, 50);
         products.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Añade el efecto hover
         addLabelHoverEffect(products, 1, 1.05);
+
+        // Añade un evento para navegar al frame de productos
+        products.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                new ProductsFrame().main();
+                // Opcional: Cerrar el frame actual si no necesitas mantenerlo abierto
+                ((JFrame) SwingUtilities.getWindowAncestor(products)).dispose();
+            }
+        });
+
+
+
+
 
         // Contact Characteristics
 
