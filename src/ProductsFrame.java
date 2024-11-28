@@ -6,11 +6,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+
+
+
 
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
 
 public class ProductsFrame {
+
 
 
     public static void CreateWindow2() {
@@ -36,8 +41,7 @@ public class ProductsFrame {
         tittle.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
         tittle.setForeground(Color.BLACK); // Asegúrate de usar Color.BLACK si no tienes una constante BLACK
         tittle.setBounds(200, 0, 350, 150);
-        addLabelHoverEffect(tittle, 1, 1.05);
-        addLabelClickEffect(tittle, 1, 1.1);
+
 
 
         // Añadir evento para hacer clic en el título y regresar a la ventana principal
@@ -92,14 +96,16 @@ public class ProductsFrame {
 
         //  Home Icon add
 
-        ImageIcon HomeIcon = resizeimage(("Images/HomeSvg.svg"), 1.25);
-        RoundedImageIcon RoundedHomeIcon = new RoundedImageIcon(HomeIcon, 25);
-        RoundedHomeIcon.setBounds(500, 55, HomeIcon.getIconWidth(), HomeIcon.getIconHeight());
+        ImageIcon homeIcon = resizeimage( "Images/HomeSvg.png", 0.2);
+        JLabel roundedHomeIcon = new JLabel(homeIcon);
+        roundedHomeIcon.setBounds(500, 55, homeIcon.getIconWidth(), homeIcon.getIconHeight());
+        addLabelHoverEffect(roundedHomeIcon, 0.2, 0.3);
+        addLabelClickEffect(roundedHomeIcon, 0.2, 0.4);
+
 
         // BackGround center  page
-
         RoundedBorder backgroundc = new RoundedBorder( "" , ColorsNk.Verde_Nk, 30);
-        backgroundc.setBounds(125 , 125, 1275, 600);
+        backgroundc.setBounds(120 , 125, 1275, 600);
         backgroundc.setOpaque(false);
         backgroundc.setBorderProperties(ColorsNk.Transparent_Nk, 1);
 
@@ -170,7 +176,7 @@ public class ProductsFrame {
         header.add(home);
         header.add(products);
         header.add(contact);
-        header.add(RoundedHomeIcon);
+        header.add(roundedHomeIcon);
 
         // -------------- CENTER ADDS -----------
          ventana1.add(backgroundc);
