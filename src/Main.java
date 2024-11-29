@@ -74,7 +74,7 @@ public class Main {
 
 
         // Products Characteristics
-        RoundedBorder products = new RoundedBorder("P r o d u c t s", ColorsNk.Transparent_Nk, 25);
+        RoundedBorder products = new RoundedBorder("C a t e g o r í a s ", ColorsNk.Transparent_Nk, 25);
         products.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         products.setBounds(900, 40, 200, 50);
         products.setHorizontalAlignment(SwingConstants.CENTER);
@@ -188,14 +188,14 @@ public class Main {
 
         ImageIcon seticon3 = resizeimage(("Images/fotof2.png"), 0.91);
         RoundedImageIcon f3 = new RoundedImageIcon(seticon3, 25);
-        f3.setBounds(850, 0, seticon2.getIconWidth(), seticon2.getIconHeight());
+        f3.setBounds(870, 0, seticon2.getIconWidth(), seticon2.getIconHeight());
         Footer.add(f3);
 
         //Image in Footer3
 
         ImageIcon seticon4 = resizeimage(("Images/fotof3.png"), 0.92);
         RoundedImageIcon f4 = new RoundedImageIcon(seticon4, 25);
-        f4.setBounds(1150, 0, seticon2.getIconWidth(), seticon2.getIconHeight());
+        f4.setBounds(1190, 0, seticon2.getIconWidth(), seticon2.getIconHeight());
         Footer.add(f4);
 
         //------------- FOOTER ADDS ------------

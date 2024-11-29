@@ -68,8 +68,6 @@ public class ProductsFrame {
             }
         });
 
-
-
         // Contact Characteristics
 
         RoundedBorder contact = new RoundedBorder("C o n t a c t  U s", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
@@ -127,7 +125,7 @@ public class ProductsFrame {
 
         JLabel textborder = new JLabel();
         textborder.setBounds(300, 10, 680, 150);
-        String title = "P r o d u c t s ";
+        String title = "C A T E G O R Í A S ";
         String info = "De lo último en gadgets a los imprescindibles del día a día, aquí encontrarás lo que te hace falta...   ¡y lo que no sabías que necesitabas!";
         textborder.setText("<html><div style='text-align: center;'>" +
                 "<span style='font-size: 30px; font-weight: bold;'>" + title + "</span><br><br>" +
@@ -142,7 +140,7 @@ public class ProductsFrame {
         // PRODUCT NUMBER ONE
 
         RoundedBorder product1 = new RoundedBorder( "" , ColorsNk.Transparent_Nk, 30);
-        product1.setBounds(150, 200, 300, 350);
+        product1.setBounds(150, 150, 300, 400);
         product1.setBorderProperties(Color.white, 5);
         backgroundc.add(product1);
 

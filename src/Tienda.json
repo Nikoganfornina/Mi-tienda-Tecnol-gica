@@ -15,8 +15,7 @@
               "pantalla": "6.5 pulgadas",
               "camara": "50 MP",
               "bateria": "5000 mAh"
-            },
-            "inventario": 50
+            }
           },
           {
             "id": 102,
@@ -27,8 +26,7 @@
               "pantalla": "13.3 pulgadas",
               "procesador": "Intel i7",
               "ram": "16 GB"
-            },
-            "inventario": 30
+            }
           },
           {
             "id": 103,
@@ -39,8 +37,7 @@
               "pantalla": "1.7 pulgadas",
               "conectividad": "Wi-Fi, Bluetooth",
               "bateria": "18 horas"
-            },
-            "inventario": 100
+            }
           },
           {
             "id": 104,
@@ -51,8 +48,7 @@
               "conectividad": "Bluetooth",
               "bateria": "30 horas de autonomía",
               "compatibilidad": "Android, iOS"
-            },
-            "inventario": 75
+            }
           },
           {
             "id": 105,
@@ -63,8 +59,7 @@
               "pantalla": "11 pulgadas",
               "procesador": "Snapdragon 8 Gen 1",
               "bateria": "8000 mAh"
-            },
-            "inventario": 40
+            }
           },
           {
             "id": 106,
@@ -75,8 +70,7 @@
               "resolucion": "32.5 MP",
               "pantalla": "3 pulgadas táctil",
               "bateria": "1300 disparos"
-            },
-            "inventario": 20
+            }
           }
         ]
       },
@@ -93,8 +87,7 @@
               "switches": "GX Blue",
               "conectividad": "USB-C",
               "retroiluminacion": "RGB"
-            },
-            "inventario": 150
+            }
           },
           {
             "id": 108,
@@ -105,8 +98,7 @@
               "dpi": "20,000",
               "conectividad": "Cable",
               "botones": "8 programables"
-            },
-            "inventario": 200
+            }
           },
           {
             "id": 109,
@@ -117,8 +109,7 @@
               "tamaño": "27 pulgadas",
               "resolucion": "4K",
               "frecuencia": "144Hz"
-            },
-            "inventario": 60
+            }
           }
         ]
       }
