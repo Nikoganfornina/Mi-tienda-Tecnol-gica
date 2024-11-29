@@ -11,8 +11,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 
 
-
-
+import static Utilities.BackGroundTransition.addLabelHoverBackgroundTransition;
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
 
@@ -50,19 +49,14 @@ public class ProductsFrame {
 
         //Button home Characteristics
 
-        JLabel home = new JLabel("U S E R S ");
+        RoundedBorder home = new RoundedBorder("U S E R S " , ColorsNk.Transparent_Nk, 25);
         home.setFont(new Font("Arial", Font.BOLD, 24));
-        home.setForeground(BLACK);
-        home.setBounds(700, 40, 150, 50);
+        home.setBounds(900, 40, 170, 50);
         home.setHorizontalAlignment(SwingConstants.CENTER);
+        header.add(home);
+        home.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        addLabelHoverBackgroundTransition(home, ColorsNk.Verde_Nk, 1000);
 
-        // Products Characteristics
-
-        JLabel products = new JLabel("P r o d u c t s");
-        products.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
-        products.setForeground(BLACK);
-        products.setBounds(850, 40, 250, 50);
-        products.setHorizontalAlignment(SwingConstants.CENTER);
 
 
         // Contact Characteristics
@@ -73,7 +67,20 @@ public class ProductsFrame {
         contact.setBorderProperties(ColorsNk.Transparent_Nk, 1);
         contact.setBounds(1150, 40, 250, 50);
         addLabelHoverEffect(contact, 1, 1.15);
-        addLabelClickEffect(contact, 1, 1.1);
+
+        // Añade un evento para navegar al frame de productos
+        contact.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                new ContactUsFrame().main();
+                // Opcional: Cerrar el frame actual si no necesitas mantenerlo abierto
+                ((JFrame) SwingUtilities.getWindowAncestor(contact)).dispose();
+            }
+        });
+
+
+
 
         // ImagenIcon icon add
 
@@ -121,7 +128,7 @@ public class ProductsFrame {
         String title = "P r o d u c t s ";
         String info = "De lo último en gadgets a los imprescindibles del día a día, aquí encontrarás lo que te hace falta...   ¡y lo que no sabías que necesitabas!";
         textborder.setText("<html><div style='text-align: center;'>" +
-                "<span style='font-size: 24px; font-weight: bold;'>" + title + "</span><br><br>" +
+                "<span style='font-size: 30px; font-weight: bold;'>" + title + "</span><br><br>" +
                 "<span style='font-size: 12px;font-weight: normal;'>" + info + "</span>" +
                 "</div></html>");
 
@@ -179,7 +186,6 @@ public class ProductsFrame {
         header.add(icon);
         header.add(tittle);
         header.add(home);
-        header.add(products);
         header.add(contact);
 
 
@@ -216,26 +222,6 @@ public class ProductsFrame {
     }
 
 
-    // Method to add hover effect with ImageIcon
-    public static void addEfectHover(JLabel label, String originalIcon, double originalPercentage, double hoverPercentage) {
-        // Resize the image in advance to avoid recalculating it during each event
-        ImageIcon resizedHoverIcon = resizeimage(originalIcon, hoverPercentage);
-        ImageIcon resizedOriginalIcon = resizeimage(originalIcon, originalPercentage);
-
-        label.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseEntered(java.awt.event.MouseEvent e) {
-                label.setIcon(resizedHoverIcon); // Change to hover size
-            }
-
-            @Override
-            public void mouseExited(java.awt.event.MouseEvent e) {
-                label.setIcon(resizedOriginalIcon); // Revert to original size
-            }
-        });
-
-    }
-
     public static void addLabelHoverEffect(JLabel label, double originalPercentage, double hoverPercentage) {
         // Guardamos el tamaño original del JLabel
         Dimension originalSize = label.getSize();
@@ -257,7 +243,7 @@ public class ProductsFrame {
         // Crear un temporizador para la animación
         Timer animationTimer = new Timer(10, null);
         animationTimer.addActionListener(new ActionListener() {
-            double step = 0.05; // Tamaño del paso para la animación
+            double step = 0.10; // Tamaño del paso para la animación
             double currentScale = 1.0; // Escala actual del JLabel
 
             @Override
@@ -283,7 +269,6 @@ public class ProductsFrame {
                     ImageIcon originalIcon = (ImageIcon) icon;
                     Image scaledImage = originalIcon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
                     label.setIcon(new ImageIcon(scaledImage));
-
                 }
             }
         });
@@ -310,6 +295,9 @@ public class ProductsFrame {
             }
         });
     }
+
+
+
 
 
 

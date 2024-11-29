@@ -58,7 +58,7 @@ public class Main {
         home.setHorizontalAlignment(SwingConstants.CENTER);
         header.add(home);
         home.setBorderProperties(ColorsNk.Transparent_Nk, 1);
-        addLabelHoverBackgroundTransition(home, WHITE, 1000);
+        addLabelHoverBackgroundTransition(home, ColorsNk.Verde_Nk, 1000);
 
 
         // Products Characteristics
@@ -68,7 +68,7 @@ public class Main {
         products.setHorizontalAlignment(SwingConstants.CENTER);
         header.add(products);
         products.setBorderProperties(ColorsNk.Transparent_Nk, 1);
-        addLabelHoverBackgroundTransition(products, WHITE, 1000);
+        addLabelHoverBackgroundTransition(products, ColorsNk.Verde_Nk, 1000);
 
 
         // Añade un evento para navegar al frame de productos
@@ -95,6 +95,16 @@ public class Main {
         addLabelHoverEffect(contact, 1, 1.15);
         contact.setBorderProperties(ColorsNk.Transparent_Nk, 1);
 
+        // Añade un evento para navegar al frame de productos
+        contact.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                new ContactUsFrame().main();
+                // Opcional: Cerrar el frame actual si no necesitas mantenerlo abierto
+                ((JFrame) SwingUtilities.getWindowAncestor(products)).dispose();
+            }
+        });
 
         // ImagenIcon icon add
 
@@ -141,6 +151,18 @@ public class Main {
         LearnMore.setBounds(120, 210, 250, 50);
         addLabelHoverEffect(LearnMore, 1, 1.15);
         LearnMore.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+
+
+        // Añade un evento para navegar al frame de productos
+        LearnMore.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                new ProductsFrame().main();
+                // Opcional: Cerrar el frame actual si no necesitas mantenerlo abierto
+                ((JFrame) SwingUtilities.getWindowAncestor(products)).dispose();
+            }
+        });
 
 
         //Image in Footer1
@@ -227,7 +249,7 @@ public class Main {
         // Crear un temporizador para la animación
         Timer animationTimer = new Timer(10, null);
         animationTimer.addActionListener(new ActionListener() {
-            double step = 0.05; // Tamaño del paso para la animación
+            double step = 0.10; // Tamaño del paso para la animación
             double currentScale = 1.0; // Escala actual del JLabel
 
             @Override
