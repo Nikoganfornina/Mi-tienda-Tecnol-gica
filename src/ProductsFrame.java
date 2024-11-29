@@ -4,6 +4,8 @@ import Utilities.RoundedImageIcon;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -40,13 +42,58 @@ public class ProductsFrame {
         JLabel tittle = new JLabel("Mi Tienda Tecnologica ");
         tittle.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
         tittle.setForeground(Color.BLACK); // Asegúrate de usar Color.BLACK si no tienes una constante BLACK
-        tittle.setBounds(200, 0, 350, 150);
+        tittle.setBounds(200, -10, 350, 150);
 
 
 
-        // Añadir evento para hacer clic en el título y regresar a la ventana principal
 
-        tittle.addMouseListener(new MouseAdapter() {
+
+        //Button home Characteristics
+
+        JLabel home = new JLabel("U S E R S ");
+        home.setFont(new Font("Arial", Font.BOLD, 24));
+        home.setForeground(BLACK);
+        home.setBounds(700, 40, 150, 50);
+        home.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // Products Characteristics
+
+        JLabel products = new JLabel("P r o d u c t s");
+        products.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
+        products.setForeground(BLACK);
+        products.setBounds(850, 40, 250, 50);
+        products.setHorizontalAlignment(SwingConstants.CENTER);
+
+
+        // Contact Characteristics
+
+        RoundedBorder contact = new RoundedBorder("C o n t a c t  U s", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
+        contact.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
+        contact.setForeground(Color.WHITE);
+        contact.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        contact.setBounds(1150, 40, 250, 50);
+        addLabelHoverEffect(contact, 1, 1.15);
+        addLabelClickEffect(contact, 1, 1.1);
+
+        // ImagenIcon icon add
+
+        ImageIcon seticon = resizeimage(("Images/logoT.png"), 0.3);
+        JLabel icon = new JLabel(seticon);
+        icon.setBounds(125, 35, seticon.getIconWidth(), seticon.getIconHeight());
+
+        //  Home Icon add
+
+        ImageIcon homeIcon = resizeimage( "Images/HomeSvg.png", 0.2);
+        JLabel roundedHomeIcon = new JLabel(homeIcon);
+        roundedHomeIcon.setBounds(500, 43, homeIcon.getIconWidth(), homeIcon.getIconHeight());
+        header.add(roundedHomeIcon);
+        addLabelHoverEffect(roundedHomeIcon, 1, 1.25);
+        addLabelClickEffect(roundedHomeIcon, 1, 1.4);
+
+
+        // Add event for do click to the Icon and return to the main window
+
+        roundedHomeIcon.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
@@ -59,48 +106,6 @@ public class ProductsFrame {
                 }
             }
         });
-
-        //Button home Characteristics
-
-        JLabel home = new JLabel("U S E R S ");
-        home.setFont(new Font("Arial", Font.BOLD, 24));
-        home.setForeground(BLACK);
-        home.setBounds(700, 40, 150, 50);
-        home.setHorizontalAlignment(SwingConstants.CENTER);
-        addLabelHoverEffect(home, 1, 1.05);
-
-        // Products Characteristics
-
-        JLabel products = new JLabel("P r o d u c t s");
-        products.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
-        products.setForeground(BLACK);
-        products.setBounds(850, 40, 250, 50);
-        products.setHorizontalAlignment(SwingConstants.CENTER);
-        addLabelHoverEffect(products, 1, 1.05);
-
-        // Contact Characteristics
-
-        RoundedBorder contact = new RoundedBorder("C o n t a c t  U s", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
-        contact.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
-        contact.setForeground(Color.WHITE);
-        contact.setBorderProperties(ColorsNk.Transparent_Nk, 1);
-        contact.setBounds(1150, 40, 250, 50);
-        addLabelHoverEffect(contact, 1, 1.05);
-        addLabelClickEffect(contact, 1, 1.1);
-
-        // ImagenIcon icon add
-
-        ImageIcon seticon = resizeimage(("Images/logoT.png"), 0.3);
-        JLabel icon = new JLabel(seticon);
-        icon.setBounds(125, 45, seticon.getIconWidth(), seticon.getIconHeight());
-
-        //  Home Icon add
-
-        ImageIcon homeIcon = resizeimage( "Images/HomeSvg.png", 0.2);
-        JLabel roundedHomeIcon = new JLabel(homeIcon);
-        roundedHomeIcon.setBounds(500, 55, homeIcon.getIconWidth(), homeIcon.getIconHeight());
-        addLabelHoverEffect(roundedHomeIcon, 0.2, 0.3);
-        addLabelClickEffect(roundedHomeIcon, 0.2, 0.4);
 
 
         // BackGround center  page
@@ -147,14 +152,14 @@ public class ProductsFrame {
         backgroundc.add(product3);
 
 
-        // next Characteristics
+        // Next Characteristics
 
         RoundedBorder next = new RoundedBorder(" S i g u i e n t e ", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
         next.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         next.setForeground(Color.WHITE);
         next.setBorderProperties(ColorsNk.Transparent_Nk, 1);
         next.setBounds(830, 765, 250, 50);
-        addLabelHoverEffect(next, 1, 1.05);
+        addLabelHoverEffect(next, 1, 1.15);
         addLabelClickEffect(next, 1, 1.1);
         ventana1.add(next);
 
@@ -165,7 +170,7 @@ public class ProductsFrame {
         after.setForeground(Color.WHITE);
         after.setBorderProperties(ColorsNk.Transparent_Nk, 1);
         after.setBounds(470, 765, 250, 50);
-        addLabelHoverEffect(after, 1, 1.05);
+        addLabelHoverEffect(after, 1, 1.15);
         addLabelClickEffect(after, 1, 1.1);
         ventana1.add(after);
 
@@ -176,7 +181,7 @@ public class ProductsFrame {
         header.add(home);
         header.add(products);
         header.add(contact);
-        header.add(roundedHomeIcon);
+
 
         // -------------- CENTER ADDS -----------
          ventana1.add(backgroundc);
@@ -241,20 +246,74 @@ public class ProductsFrame {
         int hoverWidth = (int) (originalSize.width * hoverPercentage);
         int hoverHeight = (int) (originalSize.height * hoverPercentage);
 
+        // Guardamos la posición original
+        int originalX = label.getX();
+        int originalY = label.getY();
+
+        // Detectar si el JLabel contiene un ImageIcon
+        Icon icon = label.getIcon();
+        boolean hasImageIcon = icon instanceof ImageIcon;
+
+        // Crear un temporizador para la animación
+        Timer animationTimer = new Timer(10, null);
+        animationTimer.addActionListener(new ActionListener() {
+            double step = 0.05; // Tamaño del paso para la animación
+            double currentScale = 1.0; // Escala actual del JLabel
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (currentScale < hoverPercentage) {
+                    currentScale += step;
+                } else {
+                    currentScale = hoverPercentage;
+                    animationTimer.stop();
+                }
+
+                // Calcular nuevos tamaños y posición para centrar
+                int newWidth = (int) (originalWidth * currentScale);
+                int newHeight = (int) (originalHeight * currentScale);
+                int newX = originalX - (newWidth - originalWidth) / 2;
+                int newY = originalY - (newHeight - originalHeight) / 2;
+
+                // Aplicar los cambios al JLabel
+                label.setBounds(newX, newY, newWidth, newHeight);
+
+                // Si tiene ImageIcon, ajustar su tamaño
+                if (hasImageIcon) {
+                    ImageIcon originalIcon = (ImageIcon) icon;
+                    Image scaledImage = originalIcon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                    label.setIcon(new ImageIcon(scaledImage));
+
+                }
+            }
+        });
+
+        // Agregar el efecto de hover
         label.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
-                // Cambiar el tamaño del JLabel al tamaño de hover
-                label.setBounds(label.getX(), label.getY(), hoverWidth, hoverHeight);
+                animationTimer.start(); // Comenzar la animación de hover
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
+                animationTimer.stop(); // Detener cualquier animación en curso
                 // Restaurar el tamaño original
-                label.setBounds(label.getX(), label.getY(), originalWidth, originalHeight);
+                label.setBounds(originalX, originalY, originalWidth, originalHeight);
+
+                // Si tiene ImageIcon, restaurar el tamaño original de la imagen
+                if (hasImageIcon) {
+                    ImageIcon originalIcon = (ImageIcon) icon;
+                    Image scaledImage = originalIcon.getImage().getScaledInstance(originalWidth, originalHeight, Image.SCALE_SMOOTH);
+                    label.setIcon(new ImageIcon(scaledImage));
+                }
             }
         });
     }
+
+
+
+
 
     public static void addLabelClickEffect(JLabel label, double originalPercentage, double clickedPercentage) {
         // Guardamos el tamaño original del JLabel

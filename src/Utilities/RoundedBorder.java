@@ -6,7 +6,7 @@ import java.awt.geom.RoundRectangle2D;
 
 public class RoundedBorder extends JLabel {
 
-    private Color backgroundColor;
+    Color backgroundColor;
     private int cornerRadius;
     private Color borderColor = Color.BLACK; // Color predeterminado del borde
     private int borderWidth = 1;            // Ancho predeterminado del borde
@@ -40,23 +40,27 @@ public class RoundedBorder extends JLabel {
 
     @Override
     protected void paintBorder(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g.create();
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        // Si el borde es completamente transparente, no dibujar el borde
+        if (borderColor != null && !borderColor.equals(new Color(0, 0, 0, 0))) {
+            Graphics2D g2d = (Graphics2D) g.create();
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // Configura el grosor y el color del borde
-        g2d.setStroke(new BasicStroke(borderWidth));
-        g2d.setColor(borderColor);
+            // Configura el grosor y el color del borde
+            g2d.setStroke(new BasicStroke(borderWidth));
+            g2d.setColor(borderColor);
 
-        // Dibuja el borde redondeado
-        g2d.draw(new RoundRectangle2D.Double(
-                borderWidth / 2.0,
-                borderWidth / 2.0,
-                getWidth() - borderWidth,
-                getHeight() - borderWidth,
-                cornerRadius,
-                cornerRadius
-        ));
+            // Dibuja el borde redondeado
+            g2d.draw(new RoundRectangle2D.Double(
+                    borderWidth / 2.0,
+                    borderWidth / 2.0,
+                    getWidth() - borderWidth,
+                    getHeight() - borderWidth,
+                    cornerRadius,
+                    cornerRadius
+            ));
 
-        g2d.dispose();
+            g2d.dispose();
+        }
     }
+
 }

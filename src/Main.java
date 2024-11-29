@@ -6,10 +6,13 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+import static Utilities.BackGroundTransition.addLabelHoverBackgroundTransition;
 import static java.awt.Color.*;
 
 public class Main {
@@ -43,29 +46,30 @@ public class Main {
         tittle.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
         tittle.setForeground(BLACK);
         tittle.setBounds(200, 0, 350, 150);
-        addLabelHoverEffect(tittle, 1, 1.05);
-        addLabelClickEffect(tittle, 1, 1.1);
+
 
 
 
         //Button home Characteristics
 
-        JLabel home = new JLabel("U S E R S ");
+        RoundedBorder home = new RoundedBorder("U S E R S " , ColorsNk.Transparent_Nk, 25);
         home.setFont(new Font("Arial", Font.BOLD, 24));
-        home.setForeground(BLACK);
-        home.setBounds(700, 40, 150, 50);
+        home.setBounds(700, 40, 170, 50);
         home.setHorizontalAlignment(SwingConstants.CENTER);
-        addLabelHoverEffect(home, 1, 1.05);
+        header.add(home);
+        home.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        addLabelHoverBackgroundTransition(home, WHITE, 1000);
+
 
         // Products Characteristics
-        JLabel products = new JLabel("P r o d u c t s");
+        RoundedBorder products = new RoundedBorder("P r o d u c t s", ColorsNk.Transparent_Nk, 25);
         products.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
-        products.setForeground(Color.BLACK);
-        products.setBounds(850, 40, 250, 50);
+        products.setBounds(900, 40, 200, 50);
         products.setHorizontalAlignment(SwingConstants.CENTER);
+        header.add(products);
+        products.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        addLabelHoverBackgroundTransition(products, WHITE, 1000);
 
-        // Añade el efecto hover
-        addLabelHoverEffect(products, 1, 1.05);
 
         // Añade un evento para navegar al frame de productos
         products.addMouseListener(new MouseAdapter() {
@@ -88,8 +92,7 @@ public class Main {
         contact.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         contact.setForeground(Color.WHITE);
         contact.setBounds(1150, 40, 250, 50);
-        addLabelHoverEffect(contact, 1, 1.05);
-        addLabelClickEffect(contact, 1, 1.1);
+        addLabelHoverEffect(contact, 1, 1.15);
         contact.setBorderProperties(ColorsNk.Transparent_Nk, 1);
 
 
@@ -136,8 +139,7 @@ public class Main {
         LearnMore.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         LearnMore.setForeground(Color.WHITE);
         LearnMore.setBounds(120, 210, 250, 50);
-        addLabelHoverEffect(LearnMore, 1, 1.05);
-        addLabelClickEffect(LearnMore, 1, 1.1);
+        addLabelHoverEffect(LearnMore, 1, 1.15);
         LearnMore.setBorderProperties(ColorsNk.Transparent_Nk, 1);
 
 
@@ -171,8 +173,7 @@ public class Main {
         //------------ HEADER ADDS -------------
         header.add(icon);
         header.add(tittle);
-        header.add(home);
-        header.add(products);
+
         header.add(contact);
 
         //END FRAME
@@ -203,25 +204,7 @@ public class Main {
     }
 
 
-    // Method to add hover effect with ImageIcon
-    public static void addEfectHover(JLabel label, String originalIcon, double originalPercentage, double hoverPercentage) {
-        // Resize the image in advance to avoid recalculating it during each event
-        ImageIcon resizedHoverIcon = resizeimage(originalIcon, hoverPercentage);
-        ImageIcon resizedOriginalIcon = resizeimage(originalIcon, originalPercentage);
 
-        label.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseEntered(java.awt.event.MouseEvent e) {
-                label.setIcon(resizedHoverIcon); // Change to hover size
-            }
-
-            @Override
-            public void mouseExited(java.awt.event.MouseEvent e) {
-                label.setIcon(resizedOriginalIcon); // Revert to original size
-            }
-        });
-
-    }
 
     public static void addLabelHoverEffect(JLabel label, double originalPercentage, double hoverPercentage) {
         // Guardamos el tamaño original del JLabel
@@ -233,47 +216,70 @@ public class Main {
         int hoverWidth = (int) (originalSize.width * hoverPercentage);
         int hoverHeight = (int) (originalSize.height * hoverPercentage);
 
+        // Guardamos la posición original
+        int originalX = label.getX();
+        int originalY = label.getY();
+
+        // Detectar si el JLabel contiene un ImageIcon
+        Icon icon = label.getIcon();
+        boolean hasImageIcon = icon instanceof ImageIcon;
+
+        // Crear un temporizador para la animación
+        Timer animationTimer = new Timer(10, null);
+        animationTimer.addActionListener(new ActionListener() {
+            double step = 0.05; // Tamaño del paso para la animación
+            double currentScale = 1.0; // Escala actual del JLabel
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (currentScale < hoverPercentage) {
+                    currentScale += step;
+                } else {
+                    currentScale = hoverPercentage;
+                    animationTimer.stop();
+                }
+
+                // Calcular nuevos tamaños y posición para centrar
+                int newWidth = (int) (originalWidth * currentScale);
+                int newHeight = (int) (originalHeight * currentScale);
+                int newX = originalX - (newWidth - originalWidth) / 2;
+                int newY = originalY - (newHeight - originalHeight) / 2;
+
+                // Aplicar los cambios al JLabel
+                label.setBounds(newX, newY, newWidth, newHeight);
+
+                // Si tiene ImageIcon, ajustar su tamaño
+                if (hasImageIcon) {
+                    ImageIcon originalIcon = (ImageIcon) icon;
+                    Image scaledImage = originalIcon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                    label.setIcon(new ImageIcon(scaledImage));
+                }
+            }
+        });
+
+        // Agregar el efecto de hover
         label.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
-                // Cambiar el tamaño del JLabel al tamaño de hover
-                label.setBounds(label.getX(), label.getY(), hoverWidth, hoverHeight);
+                animationTimer.start(); // Comenzar la animación de hover
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
+                animationTimer.stop(); // Detener cualquier animación en curso
                 // Restaurar el tamaño original
-                label.setBounds(label.getX(), label.getY(), originalWidth, originalHeight);
-            }
-        });
-    }
+                label.setBounds(originalX, originalY, originalWidth, originalHeight);
 
-    public static void addLabelClickEffect(JLabel label, double originalPercentage, double clickedPercentage) {
-        // Guardamos el tamaño original del JLabel
-        Dimension originalSize = label.getSize();
-
-        // Calculamos los tamaños basados en porcentajes
-        int originalWidth = (int) (originalSize.width * originalPercentage);
-        int originalHeight = (int) (originalSize.height * originalPercentage);
-        int clickedWidth = (int) (originalSize.width * clickedPercentage);
-        int clickedHeight = (int) (originalSize.height * clickedPercentage);
-
-        label.addMouseListener(new java.awt.event.MouseAdapter() {
-            private boolean isClicked = false; // Para alternar entre los dos tamaños
-
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-                if (!isClicked) {
-                    // Cambiar al tamaño de clic (expandir)
-                    label.setBounds(label.getX(), label.getY(), clickedWidth, clickedHeight);
-                } else {
-                    // Restaurar al tamaño original
-                    label.setBounds(label.getX(), label.getY(), originalWidth, originalHeight);
+                // Si tiene ImageIcon, restaurar el tamaño original de la imagen
+                if (hasImageIcon) {
+                    ImageIcon originalIcon = (ImageIcon) icon;
+                    Image scaledImage = originalIcon.getImage().getScaledInstance(originalWidth, originalHeight, Image.SCALE_SMOOTH);
+                    label.setIcon(new ImageIcon(scaledImage));
                 }
-                isClicked = !isClicked; // Alternar el estado para el siguiente clic
             }
         });
     }
+
 
 
 
