@@ -204,25 +204,7 @@ public class ContactUsFrame {
     }
 
 
-    // Method to add hover effect with ImageIcon
-    public static void addEfectHover(JLabel label, String originalIcon, double originalPercentage, double hoverPercentage) {
-        // Resize the image in advance to avoid recalculating it during each event
-        ImageIcon resizedHoverIcon = resizeimage(originalIcon, hoverPercentage);
-        ImageIcon resizedOriginalIcon = resizeimage(originalIcon, originalPercentage);
 
-        label.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseEntered(java.awt.event.MouseEvent e) {
-                label.setIcon(resizedHoverIcon); // Change to hover size
-            }
-
-            @Override
-            public void mouseExited(java.awt.event.MouseEvent e) {
-                label.setIcon(resizedOriginalIcon); // Revert to original size
-            }
-        });
-
-    }
 
     public static void addLabelHoverEffect(JLabel label, double originalPercentage, double hoverPercentage) {
         // Guardamos el tamaño original del JLabel
@@ -238,63 +220,71 @@ public class ContactUsFrame {
         int originalX = label.getX();
         int originalY = label.getY();
 
-        // Detectar si el JLabel contiene un ImageIcon
-        Icon icon = label.getIcon();
-        boolean hasImageIcon = icon instanceof ImageIcon;
+        // Velocidad de la animación (milisegundos entre pasos)
+        int animationSpeed = 10; // Cada 10ms
+        int totalDuration = 500; // Total 500ms (medio segundo)
+        int steps = totalDuration / animationSpeed;
 
-        // Crear un temporizador para la animación
-        Timer animationTimer = new Timer(10, null);
-        animationTimer.addActionListener(new ActionListener() {
-            double step = 0.05; // Tamaño del paso para la animación
-            double currentScale = 1.0; // Escala actual del JLabel
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (currentScale < hoverPercentage) {
-                    currentScale += step;
-                } else {
-                    currentScale = hoverPercentage;
-                    animationTimer.stop();
-                }
-
-                // Calcular nuevos tamaños y posición para centrar
-                int newWidth = (int) (originalWidth * currentScale);
-                int newHeight = (int) (originalHeight * currentScale);
-                int newX = originalX - (newWidth - originalWidth) / 2;
-                int newY = originalY - (newHeight - originalHeight) / 2;
-
-                // Aplicar los cambios al JLabel
-                label.setBounds(newX, newY, newWidth, newHeight);
-
-                // Si tiene ImageIcon, ajustar su tamaño
-                if (hasImageIcon) {
-                    ImageIcon originalIcon = (ImageIcon) icon;
-                    Image scaledImage = originalIcon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-                    label.setIcon(new ImageIcon(scaledImage));
-
-                }
-            }
-        });
-
-        // Agregar el efecto de hover
         label.addMouseListener(new java.awt.event.MouseAdapter() {
+            Timer expandTimer = new Timer(animationSpeed, null);
+            Timer shrinkTimer = new Timer(animationSpeed, null);
+
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
-                animationTimer.start(); // Comenzar la animación de hover
+                expandTimer.stop();
+                shrinkTimer.stop();
+
+                // Variables para el proceso de expansión
+                expandTimer = new Timer(animationSpeed, new ActionListener() {
+                    int step = 0;
+
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        if (step < steps) {
+                            double progress = (double) step / steps;
+                            int currentWidth = originalWidth + (int) ((hoverWidth - originalWidth) * progress);
+                            int currentHeight = originalHeight + (int) ((hoverHeight - originalHeight) * progress);
+
+                            int newX = originalX - (currentWidth - originalWidth) / 2;
+                            int newY = originalY - (currentHeight - originalHeight) / 2;
+
+                            label.setBounds(newX, newY, currentWidth, currentHeight);
+                            step++;
+                        } else {
+                            expandTimer.stop(); // Detener el timer al completar
+                        }
+                    }
+                });
+                expandTimer.start(); // Iniciar la expansión
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
-                animationTimer.stop(); // Detener cualquier animación en curso
-                // Restaurar el tamaño original
-                label.setBounds(originalX, originalY, originalWidth, originalHeight);
+                expandTimer.stop();
+                shrinkTimer.stop();
 
-                // Si tiene ImageIcon, restaurar el tamaño original de la imagen
-                if (hasImageIcon) {
-                    ImageIcon originalIcon = (ImageIcon) icon;
-                    Image scaledImage = originalIcon.getImage().getScaledInstance(originalWidth, originalHeight, Image.SCALE_SMOOTH);
-                    label.setIcon(new ImageIcon(scaledImage));
-                }
+                // Variables para el proceso de reducción
+                shrinkTimer = new Timer(animationSpeed, new ActionListener() {
+                    int step = 0;
+
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        if (step < steps) {
+                            double progress = (double) step / steps;
+                            int currentWidth = hoverWidth - (int) ((hoverWidth - originalWidth) * progress);
+                            int currentHeight = hoverHeight - (int) ((hoverHeight - originalHeight) * progress);
+
+                            int newX = originalX - (currentWidth - originalWidth) / 2;
+                            int newY = originalY - (currentHeight - originalHeight) / 2;
+
+                            label.setBounds(newX, newY, currentWidth, currentHeight);
+                            step++;
+                        } else {
+                            shrinkTimer.stop(); // Detener el timer al completar
+                        }
+                    }
+                });
+                shrinkTimer.start(); // Iniciar la reducción
             }
         });
     }

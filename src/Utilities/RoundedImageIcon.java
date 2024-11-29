@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
-public class RoundedImageIcon extends JPanel {
+public class RoundedImageIcon extends JLabel {
 
     private final Image image;
     private final int cornerRadius;
