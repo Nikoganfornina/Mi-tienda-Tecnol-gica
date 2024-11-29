@@ -57,12 +57,26 @@ public class UsersFrame {
         tittle.setBounds(200, -10, 350, 150);
 
 
+        // Products Characteristics
+        RoundedBorder products = new RoundedBorder("P r o d u c t s", ColorsNk.Transparent_Nk, 25);
+        products.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
+        products.setBounds(900, 40, 200, 50);
+        products.setHorizontalAlignment(SwingConstants.CENTER);
+        header.add(products);
+        products.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        addLabelHoverBackgroundTransition(products, ColorsNk.Verde_Nk, 1000);
 
 
+        // Añade un evento para navegar al frame de productos
+        products.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
 
+                new ProductsFrame().main();
+                ventana1.dispose();
 
-
-
+            }
+        });
 
         // Contact Characteristics
 
@@ -121,7 +135,7 @@ public class UsersFrame {
 
         JLabel textborder = new JLabel();
         textborder.setBounds(300, 10, 680, 150);
-        String title = "U S E R S ";
+        String title = " U S E R S ";
         String info = "De lo último en gadgets a los imprescindibles del día a día, aquí encontrarás lo que te hace falta...   ¡y lo que no sabías que necesitabas!";
         textborder.setText("<html><div style='text-align: center;'>" +
                 "<span style='font-size: 30px; font-weight: bold;'>" + title + "</span><br><br>" +

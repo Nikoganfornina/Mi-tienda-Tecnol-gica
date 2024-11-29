@@ -75,7 +75,7 @@ public class ContactUsFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                new ProductsFrame().main();
+                new UsersFrame().main();
                 ventana1.dispose();
 
             }
