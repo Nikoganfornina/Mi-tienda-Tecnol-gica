@@ -50,12 +50,23 @@ public class ProductsFrame {
         //Button home Characteristics
 
         RoundedBorder home = new RoundedBorder("U S E R S " , ColorsNk.Transparent_Nk, 25);
-        home.setFont(new Font("Arial", Font.BOLD, 24));
+        home.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         home.setBounds(900, 40, 170, 50);
         home.setHorizontalAlignment(SwingConstants.CENTER);
         header.add(home);
         home.setBorderProperties(ColorsNk.Transparent_Nk, 1);
         addLabelHoverBackgroundTransition(home, ColorsNk.Verde_Nk, 1000);
+
+        // Añade un evento para navegar al frame de productos
+        home.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                new ProductsFrame().main();
+                ventana1.dispose();
+
+            }
+        });
 
 
 
@@ -72,11 +83,8 @@ public class ProductsFrame {
         contact.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
                 new ContactUsFrame().main();
-                // Opcional: Cerrar el frame actual si no necesitas mantenerlo abierto
-                ((JFrame) SwingUtilities.getWindowAncestor(contact)).dispose();
-            }
+                ventana1.dispose();            }
         });
 
 
@@ -103,14 +111,8 @@ public class ProductsFrame {
         roundedHomeIcon.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
                 new Main().Creacionventana();
-
-                // Cerrar el frame actual
-                JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(tittle);
-                if (currentFrame != null) {
-                    currentFrame.dispose();  // Cerrar el frame actual
-                }
+                ventana1.dispose();
             }
         });
 
