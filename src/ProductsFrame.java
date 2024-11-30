@@ -12,8 +12,8 @@ import java.io.File;
 
 
 import static Utilities.BackGroundTransition.addLabelHoverBackgroundTransition;
-import static java.awt.Color.BLACK;
-import static java.awt.Color.WHITE;
+import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
+import static java.awt.Color.*;
 
 public class ProductsFrame {
 
@@ -135,6 +135,27 @@ public class ProductsFrame {
         textborder.setForeground(Color.WHITE);
         backgroundc.add(textborder);
 
+        // Cambiar el nombre de 'return' a 'btnReturn' o cualquier nombre adecuado
+        RoundedBorder btnReturn = new RoundedBorder(" V o l v e r ", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
+        btnReturn.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
+        btnReturn.setForeground(white);
+        btnReturn.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        btnReturn.setBounds(650, 765, 250, 50);
+        ventana1.add(btnReturn);
+        addLabelHoverEffect(btnReturn, 1, 1.15);
+        btnReturn.setVisible(false);
+        btnReturn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Producto.LabelTelefono().setVisible(false);
+                new ProductsFrame().main();
+                ventana1.add(backgroundc);
+                ventana1.repaint();
+                ventana1.revalidate();
+            }
+        });
+
+
         // PRODUCT NUMBER ONE
 
 
@@ -151,8 +172,9 @@ public class ProductsFrame {
                 backgroundc.setVisible(false);
                 new Producto().LabelTelefono();
                 ventana1.add(Producto.LabelTelefono());
-                ventana1.repaint();          // Refresca la ventana
+                ventana1.repaint();
                 ventana1.revalidate();
+                btnReturn.setVisible(true);
             }
         });
 
@@ -172,6 +194,11 @@ public class ProductsFrame {
         backgroundc.add(product3);
         addLabelHoverEffect(product3, 1, 1.1);
 
+
+
+
+
+        /*
 
         // Next Characteristics
 
@@ -194,6 +221,9 @@ public class ProductsFrame {
         addLabelHoverEffect(after, 1, 1.15);
         addLabelClickEffect(after, 1, 1.1);
         ventana1.add(after);
+
+        */
+
 
         //------------ HEADER ADDS -------------
 

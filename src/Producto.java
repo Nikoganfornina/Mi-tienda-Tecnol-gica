@@ -1,3 +1,4 @@
+import Utilities.Blurred;
 import Utilities.ColorsNk;
 import Utilities.RoundedBorder;
 import Utilities.RoundedImageIcon;
@@ -6,15 +7,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+import static com.sun.java.accessibility.util.AWTEventMonitor.addMouseListener;
 
 public class Producto {
 
     public static JLabel LabelTelefono() {
 
         // BackGround center  page
-        RoundedBorder TelefonosBc = new RoundedBorder( "" , ColorsNk.Verde_Nk, 30);
-        TelefonosBc.setBounds(120 , 125, 1275, 600);
+        RoundedBorder TelefonosBc = new RoundedBorder("", ColorsNk.Verde_Nk, 30);
+        TelefonosBc.setBounds(120, 125, 1275, 600);
         TelefonosBc.setOpaque(false);
         TelefonosBc.setBorderProperties(ColorsNk.Transparent_Nk, 1);
 
@@ -31,26 +36,43 @@ public class Producto {
         TelefonosBc.add(textborder);
 
         // PRODUCT NUMBER ONE
-
-        ImageIcon Category1 = resizeimage( "ProductImages/Moviles/Iphone16.png" ,  0.22);
-        RoundedImageIcon f1 = new RoundedImageIcon(Category1, 25);
+        ImageIcon Category1 = resizeimage("ProductImages/Moviles/Iphone16.png", 0.22);
+        ImageIcon hoverCategory1 = resizeimage("ProductImages/Moviles/Iphone16(1).png", 0.24);
+        Blurred f1 = new Blurred(Category1, hoverCategory1, 25); // Redondear imagen con difuminado
         f1.setBounds(150, 170, 250, 400);
         TelefonosBc.add(f1);
 
+        // Agregar el efecto de hover para el botón
         addLabelHoverEffect(f1, 1, 1.1);
+
+        // El MouseListener se encargará de gestionar el cambio de imágenes y transiciones
+        f1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // Iniciar la transición de entrada (difuminado hacia la imagen de hover)
+                f1.startTransition(true);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // Iniciar la transición de salida (volver a la imagen original)
+                f1.startTransition(false);
+            }
+        });
+
 
         // PRODUCT NUMBER TWO
 
-        ImageIcon Category2 = resizeimage( "ProductImages/Moviles/Samsung24.png" ,  0.22);
-        RoundedImageIcon product2 = new RoundedImageIcon(   Category2, 25);
+        ImageIcon Category2 = resizeimage("ProductImages/Moviles/Samsungs24.png", 0.22);
+        RoundedImageIcon product2 = new RoundedImageIcon(Category2, 25);
         product2.setBounds(525, 170, 250, 400);
         TelefonosBc.add(product2);
         addLabelHoverEffect(product2, 1, 1.1);
 
         // PRODUCT NUMBER THREE
 
-        ImageIcon Category3 = resizeimage( "ProductImages/Moviles/Xiaomi13tpro.png" ,  0.22);
-        RoundedImageIcon product3 = new RoundedImageIcon(   Category3, 25);
+        ImageIcon Category3 = resizeimage("ProductImages/Moviles/Xiaomi13tpro.png", 0.22);
+        RoundedImageIcon product3 = new RoundedImageIcon(Category3, 25);
         product3.setBounds(900, 170, 250, 400);
         TelefonosBc.add(product3);
         addLabelHoverEffect(product3, 1, 1.1);
@@ -60,6 +82,7 @@ public class Producto {
 
 
     }
+
     // Method to resize the image
     public static ImageIcon resizeimage(String ruta, double porcentaje) {
 
@@ -165,12 +188,6 @@ public class Producto {
             }
         });
     }
-
-
-
-
-
-
 
 
     public static void addLabelClickEffect(JLabel label, double originalPercentage, double clickedPercentage) {
