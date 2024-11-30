@@ -86,8 +86,6 @@ public class ProductsFrame {
         });
 
 
-
-
         // ImagenIcon icon add
 
         ImageIcon seticon = resizeimage(("Images/logoT.png"), 0.3);
@@ -110,6 +108,7 @@ public class ProductsFrame {
             public void mouseClicked(MouseEvent e) {
                 new Main().Creacionventana();
                 ventana1.dispose();
+
             }
         });
 
@@ -123,12 +122,12 @@ public class ProductsFrame {
         // Label for the text inside the background center label
 
         JLabel textborder = new JLabel();
-        textborder.setBounds(300, 10, 680, 150);
+        textborder.setBounds(300, 0, 680, 150);
         String title = "C A T E G O R Í A S ";
         String info = "De lo último en gadgets a los imprescindibles del día a día, aquí encontrarás lo que te hace falta...   ¡y lo que no sabías que necesitabas!";
-        textborder.setText("<html><div style='text-align: center;'>" +
-                "<span style='font-size: 30px; font-weight: bold;'>" + title + "</span><br><br>" +
-                "<span style='font-size: 12px;font-weight: normal;'>" + info + "</span>" +
+        textborder.setText("<html><div style='text-align: center; line-height: 90%;'>" +
+                "<span style='font-size: 30px; font-weight: bold;'>" + title + "</span><br>" +
+                "<span style='font-size: 12px; font-weight: normal;'>" + info + "</span>" +
                 "</div></html>");
 
         textborder.setHorizontalAlignment(SwingConstants.CENTER);
@@ -141,24 +140,37 @@ public class ProductsFrame {
 
         ImageIcon Category1 = resizeimage( "ProductImages/TelefonosC.png" ,  0.22);
         RoundedImageIcon f1 = new RoundedImageIcon(Category1, 25);
-        f1.setBounds(150, 150, 250, 400);
+        f1.setBounds(150, 170, 250, 400);
         backgroundc.add(f1);
 
         addLabelHoverEffect(f1, 1, 1.1);
 
+        f1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                backgroundc.setVisible(false);
+                new Producto().LabelTelefono();
+                ventana1.add(Producto.LabelTelefono());
+                ventana1.repaint();          // Refresca la ventana
+                ventana1.revalidate();
+            }
+        });
+
         // PRODUCT NUMBER TWO
 
-        RoundedBorder product2 = new RoundedBorder( "" , ColorsNk.Transparent_Nk, 30);
-        product2.setBounds(500, 200, 300, 350);
-        product2.setBorderProperties(Color.white, 5);
+        ImageIcon Category2 = resizeimage( "ProductImages/PortatilesC.png" ,  0.22);
+        RoundedImageIcon product2 = new RoundedImageIcon(   Category2, 25);
+        product2.setBounds(525, 170, 250, 400);
         backgroundc.add(product2);
+        addLabelHoverEffect(product2, 1, 1.1);
 
         // PRODUCT NUMBER THREE
 
-        RoundedBorder product3 = new RoundedBorder( "" , ColorsNk.Transparent_Nk, 30);
-        product3.setBounds(850, 200, 300, 350);
-        product3.setBorderProperties(Color.white, 5);
+        ImageIcon Category3 = resizeimage( "ProductImages/AccesoriosC.png" ,  0.22);
+        RoundedImageIcon product3 = new RoundedImageIcon(   Category3, 25);
+        product3.setBounds(900, 170, 250, 400);
         backgroundc.add(product3);
+        addLabelHoverEffect(product3, 1, 1.1);
 
 
         // Next Characteristics
