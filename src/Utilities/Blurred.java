@@ -12,7 +12,7 @@ public class Blurred extends JLabel {
     private final int cornerRadius;
 
     private float opacityOriginal = 1.0f; // Opacidad inicial para la imagen original
-    private float opacityHover = 0.0f;   // Opacidad inicial para la imagen al pasar el ratón
+    private float opacityHover = 0.0f;   // Opacidad inicial para la imagen de hover
 
     private Timer fadeInOutTimer;
 
@@ -26,12 +26,12 @@ public class Blurred extends JLabel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                startTransition(true); // Inicia la transición de entrada
+                startTransition(true); // Difuminar hacia la imagen de hover
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                startTransition(false); // Inicia la transición de salida
+                startTransition(false); // Difuminar hacia la imagen original
             }
         });
     }
@@ -45,31 +45,34 @@ public class Blurred extends JLabel {
         int steps = 30; // Número de pasos en la transición
         int delay = fadeDuration / steps; // Tiempo de espera entre cada paso
 
-        // Determinar la dirección de la transición
-        float startOpacity = entering ? 0.0f : 1.0f;
-        float endOpacity = entering ? 1.0f : 0.0f;
+        // Determinar las opacidades iniciales y finales
+        float startOpacityOriginal = entering ? 1.0f : 0.0f;
+        float endOpacityOriginal = entering ? 0.0f : 1.0f;
+        float startOpacityHover = entering ? 0.0f : 1.0f;
+        float endOpacityHover = entering ? 1.0f : 0.0f;
 
-        // Timer para controlar la transición de la opacidad
         fadeInOutTimer = new Timer(delay, new ActionListener() {
             private int step = 0;
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                float stepSize = (endOpacity - startOpacity) / steps;
-                opacityOriginal = startOpacity + (step * stepSize);
-                opacityHover = 1.0f - opacityOriginal;
+                float stepSizeOriginal = (endOpacityOriginal - startOpacityOriginal) / steps;
+                float stepSizeHover = (endOpacityHover - startOpacityHover) / steps;
+
+                opacityOriginal = startOpacityOriginal + (step * stepSizeOriginal);
+                opacityHover = startOpacityHover + (step * stepSizeHover);
                 step++;
 
-                // Detener el timer cuando llegue al final de la transición
+                repaint(); // Repintar el JLabel para actualizar el efecto
+
+                // Detener el timer cuando alcance el número de pasos
                 if (step >= steps) {
                     fadeInOutTimer.stop();
                 }
-
-                repaint(); // Repintar el JLabel para actualizar el efecto
             }
         });
 
-        fadeInOutTimer.start(); // Iniciar el timer para el efecto de transición
+        fadeInOutTimer.start();
     }
 
     @Override

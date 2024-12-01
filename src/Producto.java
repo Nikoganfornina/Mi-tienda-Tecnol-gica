@@ -42,40 +42,28 @@ public class Producto {
         f1.setBounds(150, 170, 250, 400);
         TelefonosBc.add(f1);
 
-        // Agregar el efecto de hover para el botón
+        // Agregar efecto hover para botones (opcional, si tienes otros efectos)
         addLabelHoverEffect(f1, 1, 1.1);
-
-        // El MouseListener se encargará de gestionar el cambio de imágenes y transiciones
-        f1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                // Iniciar la transición de entrada (difuminado hacia la imagen de hover)
-                f1.startTransition(true);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                // Iniciar la transición de salida (volver a la imagen original)
-                f1.startTransition(false);
-            }
-        });
-
 
         // PRODUCT NUMBER TWO
 
         ImageIcon Category2 = resizeimage("ProductImages/Moviles/Samsungs24.png", 0.22);
-        RoundedImageIcon product2 = new RoundedImageIcon(Category2, 25);
-        product2.setBounds(525, 170, 250, 400);
-        TelefonosBc.add(product2);
-        addLabelHoverEffect(product2, 1, 1.1);
+        ImageIcon hoverCategory2 = resizeimage("ProductImages/Moviles/Samsungs24(1).png", 0.24);
+        Blurred f2 = new Blurred( Category2,hoverCategory2, 25);
+        f2.setBounds(525, 170, 250, 400);
+        TelefonosBc.add(f2);
+        addLabelHoverEffect(f2, 1, 1.1);
 
         // PRODUCT NUMBER THREE
 
         ImageIcon Category3 = resizeimage("ProductImages/Moviles/Xiaomi13tpro.png", 0.22);
-        RoundedImageIcon product3 = new RoundedImageIcon(Category3, 25);
-        product3.setBounds(900, 170, 250, 400);
-        TelefonosBc.add(product3);
-        addLabelHoverEffect(product3, 1, 1.1);
+        ImageIcon hoverCategory3 = resizeimage("ProductImages/Moviles/Xiaomi13tpro(1).png", 0.24);
+        Blurred f3 = new Blurred( Category3,hoverCategory3, 25);
+        f3.setBounds(900, 170, 250, 400);
+        TelefonosBc.add(f3);
+
+        addLabelHoverEffect(f3, 1, 1.1);
+
 
         TelefonosBc.setVisible(true);
         return TelefonosBc;

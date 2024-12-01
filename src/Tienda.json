@@ -4,183 +4,160 @@
     "categorias": [
       {
         "id": 1,
-        "nombre": "Electrónica",
+        "nombre": "Telefonos",
         "productos": [
           {
             "id": 101,
-            "nombre": "Smartphone Galaxy S23",
+            "nombre": "Iphone 16",
             "precio": 999.99,
-            "descripcion": "El último smartphone del mercado con pantalla AMOLED.",
+            "descripcion": "El último modelo de Iphone con características avanzadas.",
             "caracteristicas": {
-              "pantalla": "6.5 pulgadas",
-              "camara": "50 MP",
-              "bateria": "5000 mAh"
-            }
+              "pantalla": "6.1 pulgadas",
+              "camara": "12 MP",
+              "bateria": "3500 mAh",
+              "procesador": "A16 Bionic"
+            },
+            "imagenes": [
+              "ProductImages/Moviles/Iphone16.png",
+              "ProductImages/Moviles/Iphone16(1).png"
+            ]
           },
           {
             "id": 102,
-            "nombre": "Laptop Dell XPS 13",
-            "precio": 1499.99,
-            "descripcion": "Laptop ultradelgada de alto rendimiento con pantalla 4K.",
+            "nombre": "Samsung S24",
+            "precio": 899.99,
+            "descripcion": "Smartphone Samsung con pantalla Dynamic AMOLED y cámara avanzada.",
             "caracteristicas": {
-              "pantalla": "13.3 pulgadas",
-              "procesador": "Intel i7",
-              "ram": "16 GB"
-            }
+              "pantalla": "6.7 pulgadas",
+              "camara": "50 MP",
+              "bateria": "4500 mAh",
+              "procesador": "Snapdragon 8 Gen 2"
+            },
+            "imagenes": [
+              "ProductImages/Moviles/Samsungs24.png",
+              "ProductImages/Moviles/Samsungs24(1).png"
+            ]
           },
           {
             "id": 103,
-            "nombre": "Smartwatch Apple Watch Series 8",
-            "precio": 399.99,
-            "descripcion": "Reloj inteligente con múltiples funciones de salud y conectividad.",
+            "nombre": "Xiaomi 13T Pro",
+            "precio": 799.99,
+            "descripcion": "Smartphone de alta gama con cámara Leica y batería de larga duración.",
             "caracteristicas": {
-              "pantalla": "1.7 pulgadas",
-              "conectividad": "Wi-Fi, Bluetooth",
-              "bateria": "18 horas"
-            }
-          },
+              "pantalla": "6.73 pulgadas",
+              "camara": "50 MP",
+              "bateria": "5000 mAh",
+              "procesador": "Snapdragon 8 Gen 2"
+            },
+            "imagenes": [
+              "ProductImages/Moviles/Xiaomi13tpro.png",
+              "ProductImages/Moviles/Xiaomi13tpro(1).png"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "nombre": "Portatiles",
+        "productos": [
           {
             "id": 104,
-            "nombre": "Auriculares Sony WH-1000XM5",
-            "precio": 349.99,
-            "descripcion": "Auriculares inalámbricos con cancelación de ruido avanzada.",
+            "nombre": "MacBook Pro",
+            "precio": 2399.99,
+            "descripcion": "MacBook Pro con procesador M1 Pro y pantalla Liquid Retina XDR.",
             "caracteristicas": {
-              "conectividad": "Bluetooth",
-              "bateria": "30 horas de autonomía",
-              "compatibilidad": "Android, iOS"
-            }
+              "pantalla": "14 pulgadas",
+              "procesador": "Apple M1 Pro",
+              "ram": "16 GB",
+              "almacenamiento": "512 GB SSD"
+            },
+            "imagenes": [
+              "ProductImages/Portatiles/Macbookpro.png",
+              "ProductImages/Portatiles/Macbookpro(1).png"
+            ]
           },
           {
             "id": 105,
-            "nombre": "Tablet Samsung Galaxy Tab S8",
-            "precio": 649.99,
-            "descripcion": "Tablet Android con pantalla Super AMOLED y soporte para S-Pen.",
+            "nombre": "Lenovo Pad",
+            "precio": 799.99,
+            "descripcion": "Tablet de Lenovo con pantalla de 11 pulgadas y procesador Snapdragon.",
             "caracteristicas": {
               "pantalla": "11 pulgadas",
-              "procesador": "Snapdragon 8 Gen 1",
-              "bateria": "8000 mAh"
-            }
+              "procesador": "Snapdragon 865",
+              "ram": "6 GB",
+              "almacenamiento": "128 GB"
+            },
+            "imagenes": [
+              "ProductImages/Portatiles/Lenovopad.png",
+              "ProductImages/Portatiles/Lenovopad(1).png"
+            ]
           },
           {
             "id": 106,
-            "nombre": "Cámara DSLR Canon EOS 90D",
-            "precio": 1299.99,
-            "descripcion": "Cámara profesional con sensor de 32.5 MP y grabación en 4K.",
+            "nombre": "Dell XPS",
+            "precio": 1599.99,
+            "descripcion": "Laptop Dell XPS con pantalla 4K y procesador Intel Core i7.",
             "caracteristicas": {
-              "resolucion": "32.5 MP",
-              "pantalla": "3 pulgadas táctil",
-              "bateria": "1300 disparos"
-            }
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "nombre": "Accesorios de Computación",
-        "productos": [
-          {
-            "id": 107,
-            "nombre": "Teclado Mecánico Logitech G Pro X",
-            "precio": 129.99,
-            "descripcion": "Teclado mecánico con switches intercambiables y retroiluminación RGB.",
-            "caracteristicas": {
-              "switches": "GX Blue",
-              "conectividad": "USB-C",
-              "retroiluminacion": "RGB"
-            }
-          },
-          {
-            "id": 108,
-            "nombre": "Ratón Razer DeathAdder V2",
-            "precio": 69.99,
-            "descripcion": "Ratón ergonómico para juegos con sensor óptico de 20,000 DPI.",
-            "caracteristicas": {
-              "dpi": "20,000",
-              "conectividad": "Cable",
-              "botones": "8 programables"
-            }
-          },
-          {
-            "id": 109,
-            "nombre": "Monitor LG 27GN950-B",
-            "precio": 749.99,
-            "descripcion": "Monitor UltraGear 4K con frecuencia de actualización de 144Hz.",
-            "caracteristicas": {
-              "tamaño": "27 pulgadas",
-              "resolucion": "4K",
-              "frecuencia": "144Hz"
-            }
-          }
-        ]
-      }
-    ],
-    "usuarios": [
-      {
-        "id": 1,
-        "nombre": "Juan Pérez",
-        "email": "juanperez@example.com",
-        "direccion": {
-          "calle": "Calle Principal",
-          "numero": 123,
-          "ciudad": "Madrid",
-          "pais": "España"
-        },
-        "historialCompras": [
-          {
-            "productoId": 101,
-            "cantidad": 1,
-            "fecha": "2023-11-14"
-          },
-          {
-            "productoId": 107,
-            "cantidad": 2,
-            "fecha": "2023-11-15"
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "nombre": "Ana López",
-        "email": "analópez@example.com",
-        "direccion": {
-          "calle": "Calle Secundaria",
-          "numero": 45,
-          "ciudad": "Barcelona",
-          "pais": "España"
-        },
-        "historialCompras": [
-          {
-            "productoId": 103,
-            "cantidad": 1,
-            "fecha": "2023-11-16"
-          },
-          {
-            "productoId": 108,
-            "cantidad": 1,
-            "fecha": "2023-11-17"
+              "pantalla": "13.3 pulgadas",
+              "procesador": "Intel i7",
+              "ram": "16 GB",
+              "almacenamiento": "512 GB SSD"
+            },
+            "imagenes": [
+              "ProductImages/Portatiles/Dellxps.png",
+              "ProductImages/Portatiles/Dellxps(1).png"
+            ]
           }
         ]
       },
       {
         "id": 3,
-        "nombre": "Carlos Gómez",
-        "email": "carlosgomez@example.com",
-        "direccion": {
-          "calle": "Avenida Libertad",
-          "numero": 789,
-          "ciudad": "Sevilla",
-          "pais": "España"
-        },
-        "historialCompras": [
+        "nombre": "Accesorios",
+        "productos": [
           {
-            "productoId": 104,
-            "cantidad": 1,
-            "fecha": "2023-11-18"
+            "id": 107,
+            "nombre": "Logitech Pro",
+            "precio": 129.99,
+            "descripcion": "Ratón mecánico de alto rendimiento con switches intercambiables.",
+            "caracteristicas": {
+              "conectividad": "USB-C",
+              "botones": "8 programables",
+              "peso": "83 g"
+            },
+            "imagenes": [
+              "ProductImages/Accesorios/Logipro.png",
+              "ProductImages/Accesorios/Logipro(1).png"
+            ]
           },
           {
-            "productoId": 102,
-            "cantidad": 1,
-            "fecha": "2023-11-19"
+            "id": 108,
+            "nombre": "Sony WH-1000XM5",
+            "precio": 349.99,
+            "descripcion": "Auriculares con cancelación de ruido avanzada y sonido Hi-Res.",
+            "caracteristicas": {
+              "conectividad": "Bluetooth",
+              "bateria": "30 horas",
+              "compatibilidad": "Android, iOS"
+            },
+            "imagenes": [
+              "ProductImages/Accesorios/sonywh.png",
+              "ProductImages/Accesorios/sonywh(1).png"
+            ]
+          },
+          {
+            "id": 109,
+            "nombre": "Razer K65",
+            "precio": 149.99,
+            "descripcion": "Teclado mecánico con retroiluminación RGB y switches mecánicos.",
+            "caracteristicas": {
+              "switches": "MX Cherry Red",
+              "conectividad": "USB",
+              "retroiluminacion": "RGB"
+            },
+            "imagenes": [
+              "ProductImages/Accesorios/rkr65.png",
+              "ProductImages/Accesorios/rkr65(1).png"
+            ]
           }
         ]
       }
