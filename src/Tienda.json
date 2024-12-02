@@ -11,11 +11,9 @@
             "nombre": "Iphone 16",
             "precio": 999.99,
             "descripcion": "El último modelo de Iphone con características avanzadas.",
-            "caracteristicas": "Características del producto: Alta calidad de construcción, procesador avanzado, exce ente rendimiento en aplicaciones y multitarea, cámara con resolución mejorada para fotos y videos, gran autonomía de batería, y una experiencia de usuario de alto nivel.",
-            "imagenes": [
-              "ProductImages/Moviles/Iphone16.png",
-              "ProductImages/Moviles/Iphone16(1).png"
-            ]
+            "caracteristicas": "Características del producto: Alta calidad de construcción, procesador avanzado, excelente rendimiento en aplicaciones y multitarea, cámara con resolución mejorada para fotos y videos, gran autonomía de batería, y una experiencia de usuario de alto nivel.",
+            "imagen1": "ProductImages/Moviles/Iphone16.png",
+            "imagen2": "ProductImages/Moviles/Iphone16(1).png"
           },
           {
             "id": 102,
@@ -23,10 +21,8 @@
             "precio": 899.99,
             "descripcion": "Smartphone Samsung con pantalla Dynamic AMOLED y cámara avanzada.",
             "caracteristicas": "Características del producto: Alta calidad de construcción, procesador avanzado, excelente rendimiento en aplicaciones y multitarea, cámara con resolución mejorada para fotos y videos, gran autonomía de batería, y una experiencia de usuario de alto nivel.",
-            "imagenes": [
-              "ProductImages/Moviles/Samsungs24.png",
-              "ProductImages/Moviles/Samsungs24(1).png"
-            ]
+            "imagen1": "ProductImages/Moviles/Samsungs24.png",
+            "imagen2": "ProductImages/Moviles/Samsungs24(1).png"
           },
           {
             "id": 103,
@@ -34,10 +30,8 @@
             "precio": 799.99,
             "descripcion": "Smartphone de alta gama con cámara Leica y batería de larga duración.",
             "caracteristicas": "Características del producto: Alta calidad de construcción, procesador avanzado, excelente rendimiento en aplicaciones y multitarea, cámara con resolución mejorada para fotos y videos, gran autonomía de batería, y una experiencia de usuario de alto nivel.",
-            "imagenes": [
-              "ProductImages/Moviles/Xiaomi13tpro.png",
-              "ProductImages/Moviles/Xiaomi13tpro(1).png"
-            ]
+            "imagen1": "ProductImages/Moviles/Xiaomi13tpro.png",
+            "imagen2": "ProductImages/Moviles/Xiaomi13tpro(1).png"
           }
         ]
       },
@@ -51,10 +45,8 @@
             "precio": 2399.99,
             "descripcion": "MacBook Pro con procesador M1 Pro y pantalla Liquid Retina XDR.",
             "caracteristicas": "Características del producto: Alta calidad de construcción, procesador avanzado, excelente rendimiento en aplicaciones y multitarea, cámara con resolución mejorada para fotos y videos, gran autonomía de batería, y una experiencia de usuario de alto nivel.",
-            "imagenes": [
-              "ProductImages/Portatiles/Macbookpro.png",
-              "ProductImages/Portatiles/Macbookpro(1).png"
-            ]
+            "imagen1": "ProductImages/Portatiles/Macbookpro.png",
+            "imagen2": "ProductImages/Portatiles/Macbookpro(1).png"
           },
           {
             "id": 105,
@@ -62,10 +54,8 @@
             "precio": 799.99,
             "descripcion": "Tablet de Lenovo con pantalla de 11 pulgadas y procesador Snapdragon.",
             "caracteristicas": "Características del producto: Alta calidad de construcción, procesador avanzado, excelente rendimiento en aplicaciones y multitarea, cámara con resolución mejorada para fotos y videos, gran autonomía de batería, y una experiencia de usuario de alto nivel.",
-            "imagenes": [
-              "ProductImages/Portatiles/Lenovopad.png",
-              "ProductImages/Portatiles/Lenovopad(1).png"
-            ]
+            "imagen1": "ProductImages/Portatiles/Lenovopad.png",
+            "imagen2": "ProductImages/Portatiles/Lenovopad(1).png"
           },
           {
             "id": 106,
@@ -73,10 +63,8 @@
             "precio": 1599.99,
             "descripcion": "Laptop Dell XPS con pantalla 4K y procesador Intel Core i7.",
             "caracteristicas": "Características del producto: Alta calidad de construcción, procesador avanzado, excelente rendimiento en aplicaciones y multitarea, cámara con resolución mejorada para fotos y videos, gran autonomía de batería, y una experiencia de usuario de alto nivel.",
-            "imagenes": [
-              "ProductImages/Portatiles/Dellxps.png",
-              "ProductImages/Portatiles/Dellxps(1).png"
-            ]
+            "imagen1": "ProductImages/Portatiles/Dellxps.png",
+            "imagen2": "ProductImages/Portatiles/Dellxps(1).png"
           }
         ]
       },
@@ -90,10 +78,8 @@
             "precio": 129.99,
             "descripcion": "Ratón mecánico de alto rendimiento con switches intercambiables.",
             "caracteristicas": "Características del producto: Alta calidad de construcción, procesador avanzado, excelente rendimiento en aplicaciones y multitarea, cámara con resolución mejorada para fotos y videos, gran autonomía de batería, y una experiencia de usuario de alto nivel.",
-            "imagenes": [
-              "ProductImages/Accesorios/Logipro.png",
-              "ProductImages/Accesorios/Logipro(1).png"
-            ]
+            "imagen1": "ProductImages/Accesorios/Logipro.png",
+            "imagen2": "ProductImages/Accesorios/Logipro(1).png"
           },
           {
             "id": 108,
@@ -101,10 +87,8 @@
             "precio": 349.99,
             "descripcion": "Auriculares con cancelación de ruido avanzada y sonido Hi-Res.",
             "caracteristicas": "Características del producto: Alta calidad de construcción, procesador avanzado, excelente rendimiento en aplicaciones y multitarea, cámara con resolución mejorada para fotos y videos, gran autonomía de batería, y una experiencia de usuario de alto nivel.",
-            "imagenes": [
-              "ProductImages/Accesorios/sonywh.png",
-              "ProductImages/Accesorios/sonywh(1).png"
-            ]
+            "imagen1": "ProductImages/Accesorios/sonywh.png",
+            "imagen2": "ProductImages/Accesorios/sonywh(1).png"
           },
           {
             "id": 109,
@@ -112,10 +96,8 @@
             "precio": 149.99,
             "descripcion": "Teclado mecánico con retroiluminación RGB y switches mecánicos.",
             "caracteristicas": "Características del producto: Alta calidad de construcción, procesador avanzado, excelente rendimiento en aplicaciones y multitarea, cámara con resolución mejorada para fotos y videos, gran autonomía de batería, y una experiencia de usuario de alto nivel.",
-            "imagenes": [
-              "ProductImages/Accesorios/rkr65.png",
-              "ProductImages/Accesorios/rkr65(1).png"
-            ]
+            "imagen1": "ProductImages/Accesorios/rkr65.png",
+            "imagen2": "ProductImages/Accesorios/rkr65(1).png"
           }
         ]
       }

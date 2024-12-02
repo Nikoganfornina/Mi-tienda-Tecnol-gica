@@ -3,40 +3,52 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.sql.*;
 import java.nio.file.*;
+import java.sql.*;
 
 public class BaseTienda {
 
-    // Método para crear la base de datos y las tablas
-    public static void crearBaseDeDatos() {
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/BaseTienda.bd")) {
-            Statement stmt = conn.createStatement();
-            String sql = "CREATE TABLE IF NOT EXISTS productos (" +
-                    "id INTEGER PRIMARY KEY, " +
-                    "nombre TEXT, " +
-                    "precio REAL, " +
-                    "descripcion TEXT, " +
-                    "categoria TEXT, " +
-                    "imagen TEXT)";
-            stmt.execute(sql);
-            System.out.println("Base de datos y tabla creadas correctamente.");
+    private static final String DB_PATH = "src/BaseTienda.db";
+
+    // Método para inicializar la base de datos y la tabla
+    public static void inicializarBaseDeDatos() {
+        String createTableSQL = """
+                CREATE TABLE IF NOT EXISTS productos (
+                    id INTEGER PRIMARY KEY,
+                    nombre TEXT NOT NULL,
+                    precio REAL NOT NULL,
+                    descripcion TEXT,
+                    categoria TEXT,
+                    imagen TEXT,
+                    imagen2 TEXT,
+                    caracteristicas TEXT  -- Nueva columna para las características
+                );
+                """; // Se añade la columna 'caracteristicas'
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH);
+             Statement stmt = conn.createStatement()) {
+
+            // Crear tabla si no existe
+            stmt.execute(createTableSQL);
+            System.out.println("Tabla 'productos' verificada/creada correctamente.");
+
         } catch (SQLException e) {
-            System.out.println("Error al crear la base de datos: " + e.getMessage());
+            throw new RuntimeException("Error al inicializar la base de datos: " + e.getMessage());
         }
     }
 
-    // Método para insertar productos desde JSON usando json-simple
+    // Método para insertar productos desde JSON
     public static void insertarProductosDesdeJSON() {
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/BaseTienda.bd")) {
-            String jsonContent = new String(Files.readAllBytes(Paths.get("src/Tienda.json")));
-            JSONParser parser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) parser.parse(jsonContent);
+        String insertSQL = "INSERT INTO productos (id, nombre, precio, descripcion, categoria, imagen, imagen2, caracteristicas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"; // Se añadió 'caracteristicas'
+        String jsonPath = "src/Tienda.json";
 
-            JSONObject tienda = (JSONObject) jsonObject.get("tienda");
-            JSONArray categorias = (JSONArray) tienda.get("categorias");
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH);
+             PreparedStatement stmt = conn.prepareStatement(insertSQL)) {
 
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO productos (id, nombre, precio, descripcion, categoria, imagen) VALUES (?, ?, ?, ?, ?, ?)");
+            String jsonContent = Files.readString(Paths.get(jsonPath));
+            JSONObject jsonObject = (JSONObject) new JSONParser().parse(jsonContent);
+
+            JSONArray categorias = (JSONArray) ((JSONObject) jsonObject.get("tienda")).get("categorias");
 
             for (Object catObj : categorias) {
                 JSONObject categoria = (JSONObject) catObj;
@@ -46,52 +58,73 @@ public class BaseTienda {
                 for (Object prodObj : productos) {
                     JSONObject producto = (JSONObject) prodObj;
 
-                    int id = ((Long) producto.get("id")).intValue();
-                    String nombre = (String) producto.get("nombre");
-                    double precio = ((Number) producto.get("precio")).doubleValue();
-                    String descripcion = (String) producto.get("descripcion");
-                    JSONArray imagenes = (JSONArray) producto.get("imagenes");
-                    String imagen = imagenes != null && !imagenes.isEmpty() ? (String) imagenes.get(0) : null;
-
-                    stmt.setInt(1, id);
-                    stmt.setString(2, nombre);
-                    stmt.setDouble(3, precio);
-                    stmt.setString(4, descripcion);
+                    stmt.setInt(1, ((Long) producto.get("id")).intValue());
+                    stmt.setString(2, (String) producto.get("nombre"));
+                    stmt.setDouble(3, ((Number) producto.get("precio")).doubleValue());
+                    stmt.setString(4, (String) producto.get("descripcion"));
                     stmt.setString(5, categoriaNombre);
-                    stmt.setString(6, imagen);
+
+                    // Obtener las dos imágenes
+                    String imagen1 = (String) producto.get("imagen1");
+                    String imagen2 = (String) producto.get("imagen2");
+
+                    // Obtener las características del producto
+                    String caracteristicas = (String) producto.get("caracteristicas");
+
+                    // Asignar los valores a los campos correspondientes
+                    stmt.setString(6, imagen1); // imagen1
+                    stmt.setString(7, imagen2); // imagen2
+                    stmt.setString(8, caracteristicas); // caracteristicas
+
                     stmt.addBatch();
                 }
             }
 
             stmt.executeBatch();
-            System.out.println("Productos insertados correctamente.");
+            System.out.println("Productos insertados correctamente desde JSON.");
+
         } catch (SQLException | ParseException | java.io.IOException e) {
-            System.out.println("Error al insertar productos: " + e.getMessage());
+            throw new RuntimeException("Error al insertar productos: " + e.getMessage());
         }
     }
 
-    // Método para mostrar los productos de la base de datos
+    // Método para mostrar los productos
     public static void mostrarProductos() {
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/BaseTienda.bd")) {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM productos");
+        String selectSQL = "SELECT * FROM productos";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(selectSQL)) {
 
             while (rs.next()) {
-                System.out.println("ID: " + rs.getInt("id"));
-                System.out.println("Nombre: " + rs.getString("nombre"));
-                System.out.println("Precio: " + rs.getDouble("precio"));
-                System.out.println("Descripción: " + rs.getString("descripcion"));
-                System.out.println("Categoría: " + rs.getString("categoria"));
-                System.out.println("Imagen: " + rs.getString("imagen"));
-                System.out.println("---------------------------");
+                System.out.printf(""" 
+                        ID: %d
+                        Nombre: %s
+                        Precio: %.2f
+                        Descripción: %s
+                        Categoría: %s
+                        Imagen1: %s
+                        Imagen2: %s
+                        Características: %s
+                        ---------------------------
+                        """,
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getDouble("precio"),
+                        rs.getString("descripcion"),
+                        rs.getString("categoria"),
+                        rs.getString("imagen"),
+                        rs.getString("imagen2"),
+                        rs.getString("caracteristicas")); // Mostrar las características
             }
+
         } catch (SQLException e) {
-            System.out.println("Error al mostrar productos: " + e.getMessage());
+            throw new RuntimeException("Error al mostrar productos: " + e.getMessage());
         }
     }
 
     public static void main(String[] args) {
-        crearBaseDeDatos();
+        inicializarBaseDeDatos();
         insertarProductosDesdeJSON();
         mostrarProductos();
     }
