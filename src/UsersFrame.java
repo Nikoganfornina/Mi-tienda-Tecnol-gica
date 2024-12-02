@@ -42,6 +42,8 @@ public class UsersFrame {
         ventana1.setBackground(WHITE);
         ventana1.setResizable(false);
         ventana1.setLayout(null);
+        ventana1.setLocationRelativeTo(null);
+
 
         // Header label characteristics
 

@@ -21,7 +21,7 @@ public class BaseTienda {
                     categoria TEXT,
                     imagen TEXT,
                     imagen2 TEXT,
-                    caracteristicas TEXT  -- Nueva columna para las características
+                    caracteristicas TEXT  
                 );
                 """; // Se añade la columna 'caracteristicas'
 
@@ -98,16 +98,16 @@ public class BaseTienda {
 
             while (rs.next()) {
                 System.out.printf(""" 
-                        ID: %d
-                        Nombre: %s
-                        Precio: %.2f
-                        Descripción: %s
-                        Categoría: %s
-                        Imagen1: %s
-                        Imagen2: %s
-                        Características: %s
-                        ---------------------------
-                        """,
+                                ID: %d
+                                Nombre: %s
+                                Precio: %.2f
+                                Descripción: %s
+                                Categoría: %s
+                                Imagen1: %s
+                                Imagen2: %s
+                                Características: %s
+                                ---------------------------
+                                """,
                         rs.getInt("id"),
                         rs.getString("nombre"),
                         rs.getDouble("precio"),
@@ -123,9 +123,36 @@ public class BaseTienda {
         }
     }
 
+    public static String[] devolverImagen(int id) {
+        String selectSQL = "SELECT imagen, imagen2 FROM productos WHERE id = ?";
+
+        String[] imagenes = new String[2];
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH);
+             PreparedStatement stmt = conn.prepareStatement(selectSQL)) {
+
+            stmt.setInt(1,id);
+
+            try(ResultSet rs = stmt.executeQuery()) {
+
+                while (rs.next()) {
+                    imagenes[0] = rs.getString("imagen");
+                    imagenes[1] = rs.getString("imagen2");
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return imagenes;
+    }
+
     public static void main(String[] args) {
         inicializarBaseDeDatos();
         insertarProductosDesdeJSON();
         mostrarProductos();
     }
 }
+
+
+

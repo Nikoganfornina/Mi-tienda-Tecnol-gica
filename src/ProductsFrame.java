@@ -29,6 +29,7 @@ public class ProductsFrame {
         ventana1.setBackground(WHITE);
         ventana1.setResizable(false);
         ventana1.setLayout(null);
+        ventana1.setLocationRelativeTo(null);
 
         // Header label characteristics
 
@@ -42,10 +43,6 @@ public class ProductsFrame {
         tittle.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
         tittle.setForeground(Color.BLACK); // Asegúrate de usar Color.BLACK si no tienes una constante BLACK
         tittle.setBounds(200, -10, 350, 150);
-
-
-
-
 
         //Button home Characteristics
 
@@ -144,14 +141,21 @@ public class ProductsFrame {
         ventana1.add(btnReturn);
         addLabelHoverEffect(btnReturn, 1, 1.15);
         btnReturn.setVisible(false);
+
         btnReturn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Producto.LabelTelefono().setVisible(false);
+                ocultarComponentes(
+                        Producto.LabelTelefono(),
+                        Producto.LabelPortatiles(),
+                        Producto.LabelAccesorios()
+                );
+
                 new ProductsFrame().main();
                 ventana1.add(backgroundc);
                 ventana1.repaint();
                 ventana1.revalidate();
+                ventana1.dispose();
             }
         });
 
@@ -160,20 +164,23 @@ public class ProductsFrame {
 
 
         ImageIcon Category1 = resizeimage( "ProductImages/TelefonosC.png" ,  0.22);
-        RoundedImageIcon f1 = new RoundedImageIcon(Category1, 25);
-        f1.setBounds(150, 170, 250, 400);
-        backgroundc.add(f1);
+        RoundedImageIcon product1 = new RoundedImageIcon(Category1, 25);
+        product1.setBounds(150, 170, 250, 400);
+        backgroundc.add(product1);
 
-        addLabelHoverEffect(f1, 1, 1.1);
+        addLabelHoverEffect(product1, 1, 1.1);
 
-        f1.addMouseListener(new MouseAdapter() {
+        product1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
+
                 backgroundc.setVisible(false);
                 new Producto().LabelTelefono();
                 ventana1.add(Producto.LabelTelefono());
                 ventana1.repaint();
                 ventana1.revalidate();
+
                 btnReturn.setVisible(true);
             }
         });
@@ -186,6 +193,21 @@ public class ProductsFrame {
         backgroundc.add(product2);
         addLabelHoverEffect(product2, 1, 1.1);
 
+        product2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                backgroundc.setVisible(false);
+                new Producto().LabelPortatiles();
+                ventana1.add(Producto.LabelPortatiles());
+                ventana1.repaint();
+                ventana1.revalidate();
+
+                btnReturn.setVisible(true);
+
+            }
+        });
+
         // PRODUCT NUMBER THREE
 
         ImageIcon Category3 = resizeimage( "ProductImages/AccesoriosC.png" ,  0.22);
@@ -193,6 +215,21 @@ public class ProductsFrame {
         product3.setBounds(900, 170, 250, 400);
         backgroundc.add(product3);
         addLabelHoverEffect(product3, 1, 1.1);
+
+        product3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                backgroundc.setVisible(false);
+                new Producto().LabelAccesorios();
+                ventana1.add(Producto.LabelAccesorios());
+                ventana1.repaint();
+                ventana1.revalidate();
+
+                btnReturn.setVisible(true);
+
+            }
+        });
 
 
 
@@ -258,6 +295,11 @@ public class ProductsFrame {
         );
 
         return new ImageIcon(imagenRedimensionada);
+    }
+    private static void ocultarComponentes(JComponent... componentes) {
+        for (JComponent componente : componentes) {
+            componente.setVisible(false);
+        }
     }
 
     // Method to position the images

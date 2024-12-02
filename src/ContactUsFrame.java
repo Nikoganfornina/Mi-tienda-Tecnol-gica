@@ -41,6 +41,8 @@ public class ContactUsFrame {
         ventana1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventana1.setBackground(WHITE);
         ventana1.setResizable(false);
+        ventana1.setLocationRelativeTo(null);
+
         ventana1.setLayout(null);
 
         // Header label characteristics

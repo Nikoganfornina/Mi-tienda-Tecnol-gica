@@ -29,6 +29,7 @@ public class Main {
         JFrame ventana1 = new JFrame("Ventana 1");
         ventana1.setSize(1500, 900);
         ventana1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana1.setLocationRelativeTo(null);
         ventana1.setBackground(WHITE);
         ventana1.setResizable(false);
         ventana1.setLayout(null);
