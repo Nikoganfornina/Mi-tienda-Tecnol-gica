@@ -50,6 +50,7 @@ public class Producto {
         // Agregar efecto hover para botones (opcional, si tienes otros efectos)
         addLabelHoverEffect(f1, 1, 1.1);
 
+
         // PRODUCT NUMBER TWO
 
         String[] imagenes2 = BaseTienda.devolverImagen(102);
@@ -352,6 +353,11 @@ public class Producto {
                 label.setIcon(resizedOriginalIcon); // Revert to original size
             }
         });
+    }
+
+    public static JLabel labelInformativo(){
+
+        return null;
     }
 }
 

@@ -37,7 +37,7 @@ public class BaseTienda {
         }
     }
 
-    // Método para insertar productos desde JSON
+    // Metodo para insertar productos desde JSON
     public static void insertarProductosDesdeJSON() {
         String insertSQL = "INSERT INTO productos (id, nombre, precio, descripcion, categoria, imagen, imagen2, caracteristicas) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"; // Se añadió 'caracteristicas'
         String jsonPath = "src/Tienda.json";
