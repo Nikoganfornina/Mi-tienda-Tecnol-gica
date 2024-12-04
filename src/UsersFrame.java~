@@ -1,40 +1,49 @@
 import Utilities.ColorsNk;
 import Utilities.RoundedBorder;
-import Utilities.RoundedImageIcon;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-
-import  Utilities.BackGroundTransition.*;
 
 import static Utilities.BackGroundTransition.addLabelHoverBackgroundTransition;
-import static java.awt.Color.*;
+import static java.awt.Color.WHITE;
 
-public class Main {
+import Utilities.ColorsNk;
+import Utilities.RoundedBorder;
+import Utilities.RoundedImageIcon;
+
+import javax.swing.*;
+        import java.awt.*;
+        import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+
+package Utilities;
+
+import static java.awt.Color.BLACK;
+import static java.awt.Color.WHITE;
+
+public class UsersFrame {
 
 
-    static void Creacionventana() {
-        // JFrame characteristics
 
-        File icono = new File("Images/logo_header.png");
-        System.out.println(icono.exists());
+    public static void CreateWindow2() {
 
         // If there is any JLabel in the project, set opaque to false
 
-        JFrame ventana1 = new JFrame("Ventana 1");
+        JFrame ventana1 = new JFrame("Ventana 2");
         ventana1.setSize(1500, 900);
         ventana1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana1.setLocationRelativeTo(null);
         ventana1.setBackground(WHITE);
         ventana1.setResizable(false);
         ventana1.setLayout(null);
+        ventana1.setLocationRelativeTo(null);
+
 
         // Header label characteristics
 
@@ -44,40 +53,14 @@ public class Main {
 
 
         // Tittle Characteristics
-
         JLabel tittle = new JLabel("Mi Tienda Tecnologica ");
         tittle.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
-        tittle.setForeground(BLACK);
-        tittle.setBounds(200, 0, 350, 150);
-
-
-
-
-        //Button home Characteristics
-
-        RoundedBorder home = new RoundedBorder("U S E R S " , ColorsNk.Transparent_Nk, 25);
-        home.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
-        home.setBounds(700, 40, 170, 50);
-        home.setHorizontalAlignment(SwingConstants.CENTER);
-        header.add(home);
-        home.setBorderProperties(ColorsNk.Transparent_Nk, 1);
-        addLabelHoverBackgroundTransition(home, ColorsNk.Verde_Nk, 1000);
-
-        // Añade un evento para navegar al frame de productos
-        home.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-                new UsersFrame().main();
-                ventana1.dispose();
-
-            }
-        });
-
+        tittle.setForeground(Color.BLACK); // Asegúrate de usar Color.BLACK si no tienes una constante BLACK
+        tittle.setBounds(200, -10, 350, 150);
 
 
         // Products Characteristics
-        RoundedBorder products = new RoundedBorder("C a t e g o r í a s ", ColorsNk.Transparent_Nk, 25);
+        RoundedBorder products = new RoundedBorder("P r o d u c t s", ColorsNk.Transparent_Nk, 25);
         products.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         products.setBounds(900, 40, 200, 50);
         products.setHorizontalAlignment(SwingConstants.CENTER);
@@ -97,126 +80,135 @@ public class Main {
             }
         });
 
-
-
-
-
         // Contact Characteristics
 
         RoundedBorder contact = new RoundedBorder("C o n t a c t  U s", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
         contact.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
         contact.setForeground(Color.WHITE);
+        contact.setBorderProperties(ColorsNk.Transparent_Nk, 1);
         contact.setBounds(1150, 40, 250, 50);
         addLabelHoverEffect(contact, 1, 1.15);
-        contact.setBorderProperties(ColorsNk.Transparent_Nk, 1);
 
         // Añade un evento para navegar al frame de productos
         contact.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
                 new ContactUsFrame().main();
-                ventana1.dispose();
-
-            }
+                ventana1.dispose();            }
         });
+
+
+
 
         // ImagenIcon icon add
 
         ImageIcon seticon = resizeimage(("Images/logoT.png"), 0.3);
         JLabel icon = new JLabel(seticon);
-        icon.setBounds(125, 45, seticon.getIconWidth(), seticon.getIconHeight());
+        icon.setBounds(125, 35, seticon.getIconWidth(), seticon.getIconHeight());
+
+        //  Home Icon add
+
+        ImageIcon homeIcon = resizeimage( "Images/HomeSvg.png", 0.2);
+        JLabel roundedHomeIcon = new JLabel(homeIcon);
+        roundedHomeIcon.setBounds(500, 43, homeIcon.getIconWidth(), homeIcon.getIconHeight());
+        header.add(roundedHomeIcon);
+        addLabelHoverEffect(roundedHomeIcon, 1, 1.25);
+        addLabelClickEffect(roundedHomeIcon, 1, 1.4);
 
 
-        // ImagenIcon icon2 add
-        ImageIcon Techzone = resizeimage("Images/Techzone.png", 0.98);
-        RoundedImageIcon homeIcon = new RoundedImageIcon(Techzone, 25);
-        homeIcon.setBounds(125, 135, Techzone.getIconWidth(), 350);
-        ventana1.add(homeIcon);
+        // Add event for do click to the Icon and return to the main window
 
-        //Footer Label
-
-        JLabel Footer = new JLabel();
-        ventana1.add(Footer);
-        Footer.setBounds(0, 525, 1500, 300);
-        Border footerBorder = new LineBorder(BLACK, 2);
-
-        //Text in the footer
-
-        JLabel textf = new JLabel("<html>Let's Explore The<br>World with Us</html>");
-        textf.setFont(new Font("Arial", Font.BOLD, 34));
-        textf.setForeground(BLACK);
-        textf.setBounds(125, 10, 400, 100);
-        textf.setHorizontalAlignment(SwingConstants.LEFT);
-
-
-        //Text in the footer 2
-
-        JLabel textf2 = new JLabel("<html>TechZone: <b> el paraíso de los geeks.</b> PCs brutales, <br> gadgets futuristas y luces LED que te hipnotizan.<br>Aquí vienes por un cable y sales con medio servidor.<br><b>Tu zona, tu tecnología.</b></html>");
-        textf2.setFont(new Font("Arial", Font.PLAIN, 14));
-        textf2.setForeground(gray);
-        textf2.setBounds(125, 100, 400, 100);
-        textf2.setHorizontalAlignment(SwingConstants.LEFT);
-
-        //Button in Footer
-
-        RoundedBorder LearnMore = new RoundedBorder("L e a r n  M o r e", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
-        LearnMore.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
-        LearnMore.setForeground(Color.WHITE);
-        LearnMore.setBounds(120, 210, 250, 50);
-        addLabelHoverEffect(LearnMore, 1, 1.15);
-        LearnMore.setBorderProperties(ColorsNk.Transparent_Nk, 1);
-
-
-        // Añade un evento para navegar al frame de productos
-        LearnMore.addMouseListener(new MouseAdapter() {
+        roundedHomeIcon.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
-                new ProductsFrame().main();
+                new Main().Creacionventana();
                 ventana1.dispose();
-
             }
         });
 
 
-        //Image in Footer1
+        // BackGround center  page
+        RoundedBorder backgroundc = new RoundedBorder( "" , ColorsNk.Verde_Nk, 30);
+        backgroundc.setBounds(120 , 125, 1275, 600);
+        backgroundc.setOpaque(false);
+        backgroundc.setBorderProperties(ColorsNk.Transparent_Nk, 1);
 
-        ImageIcon seticon2 = resizeimage(("Images/fotof1.png"), 0.9);
-        RoundedImageIcon f2 = new RoundedImageIcon(seticon2, 25);
-        f2.setBounds(550, 0, seticon2.getIconWidth(), seticon2.getIconHeight());
-        Footer.add(f2);
+        // Label for the text inside the background center label
 
-        //Image in Footer2
+        JLabel textborder = new JLabel();
+        textborder.setBounds(300, 10, 680, 150);
+        String title = " U S E R S ";
+        String info = "De lo último en gadgets a los imprescindibles del día a día, aquí encontrarás lo que te hace falta...   ¡y lo que no sabías que necesitabas!";
+        textborder.setText("<html><div style='text-align: center;'>" +
+                "<span style='font-size: 30px; font-weight: bold;'>" + title + "</span><br><br>" +
+                "<span style='font-size: 12px;font-weight: normal;'>" + info + "</span>" +
+                "</div></html>");
 
-        ImageIcon seticon3 = resizeimage(("Images/fotof2.png"), 0.91);
-        RoundedImageIcon f3 = new RoundedImageIcon(seticon3, 25);
-        f3.setBounds(870, 0, seticon2.getIconWidth(), seticon2.getIconHeight());
-        Footer.add(f3);
+        textborder.setHorizontalAlignment(SwingConstants.CENTER);
+        textborder.setVerticalAlignment(SwingConstants.CENTER);
+        textborder.setForeground(Color.WHITE);
+        backgroundc.add(textborder);
 
-        //Image in Footer3
+        // PRODUCT NUMBER ONE
 
-        ImageIcon seticon4 = resizeimage(("Images/fotof3.png"), 0.92);
-        RoundedImageIcon f4 = new RoundedImageIcon(seticon4, 25);
-        f4.setBounds(1190, 0, seticon2.getIconWidth(), seticon2.getIconHeight());
-        Footer.add(f4);
+        RoundedBorder product1 = new RoundedBorder( "" , ColorsNk.Transparent_Nk, 30);
+        product1.setBounds(150, 200, 300, 350);
+        product1.setBorderProperties(Color.white, 5);
+        backgroundc.add(product1);
 
-        //------------- FOOTER ADDS ------------
+        // PRODUCT NUMBER TWO
 
-        Footer.add(textf);
-        Footer.add(textf2);
-        Footer.add(LearnMore);
+        RoundedBorder product2 = new RoundedBorder( "" , ColorsNk.Transparent_Nk, 30);
+        product2.setBounds(500, 200, 300, 350);
+        product2.setBorderProperties(Color.white, 5);
+        backgroundc.add(product2);
+
+        // PRODUCT NUMBER THREE
+
+        RoundedBorder product3 = new RoundedBorder( "" , ColorsNk.Transparent_Nk, 30);
+        product3.setBounds(850, 200, 300, 350);
+        product3.setBorderProperties(Color.white, 5);
+        backgroundc.add(product3);
+
+
+        // Next Characteristics
+
+        RoundedBorder next = new RoundedBorder(" S i g u i e n t e ", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
+        next.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
+        next.setForeground(Color.WHITE);
+        next.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        next.setBounds(830, 765, 250, 50);
+        addLabelHoverEffect(next, 1, 1.15);
+        addLabelClickEffect(next, 1, 1.1);
+        ventana1.add(next);
+
+        // after Characteristics
+
+        RoundedBorder after = new RoundedBorder(" A n t e r i o r ", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
+        after.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
+        after.setForeground(Color.WHITE);
+        after.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        after.setBounds(470, 765, 250, 50);
+        addLabelHoverEffect(after, 1, 1.15);
+        addLabelClickEffect(after, 1, 1.1);
+        ventana1.add(after);
 
         //------------ HEADER ADDS -------------
+
         header.add(icon);
         header.add(tittle);
-
         header.add(contact);
+
+
+        // -------------- CENTER ADDS -----------
+        ventana1.add(backgroundc);
+
 
         //END FRAME
 
         ventana1.setVisible(true);
     }
+
 
     // Method to resize the image
     public static ImageIcon resizeimage(String ruta, double porcentaje) {
@@ -239,8 +231,6 @@ public class Main {
     public static void positionImage(JLabel imagen, int x, int y) {
         imagen.setBounds(x, y, imagen.getIcon().getIconWidth(), imagen.getIcon().getIconHeight());
     }
-
-
 
 
     public static void addLabelHoverEffect(JLabel label, double originalPercentage, double hoverPercentage) {
@@ -328,6 +318,38 @@ public class Main {
 
 
 
+
+
+
+
+    public static void addLabelClickEffect(JLabel label, double originalPercentage, double clickedPercentage) {
+        // Guardamos el tamaño original del JLabel
+        Dimension originalSize = label.getSize();
+
+        // Calculamos los tamaños basados en porcentajes
+        int originalWidth = (int) (originalSize.width * originalPercentage);
+        int originalHeight = (int) (originalSize.height * originalPercentage);
+        int clickedWidth = (int) (originalSize.width * clickedPercentage);
+        int clickedHeight = (int) (originalSize.height * clickedPercentage);
+
+        label.addMouseListener(new java.awt.event.MouseAdapter() {
+            private boolean isClicked = false; // Para alternar entre los dos tamaños
+
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                if (!isClicked) {
+                    // Cambiar al tamaño de clic (expandir)
+                    label.setBounds(label.getX(), label.getY(), clickedWidth, clickedHeight);
+                } else {
+                    // Restaurar al tamaño original
+                    label.setBounds(label.getX(), label.getY(), originalWidth, originalHeight);
+                }
+                isClicked = !isClicked; // Alternar el estado para el siguiente clic
+            }
+        });
+    }
+
+
     // Method to add click effect with ImageIcon
     public static void addEfectClick(JLabel label, String originalIcon, double originalPercentage, double clickPercentage) {
         // Resize the image in advance to avoid recalculating it during each event
@@ -347,11 +369,7 @@ public class Main {
         });
     }
 
-
-
-
-    public static void main(String[] args) {
-        Creacionventana();
+    public void main() {
+        CreateWindow2();
     }
-
 }

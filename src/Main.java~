@@ -12,9 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
-import  Utilities.BackGroundTransition.*;
-
-import static Utilities.BackGroundTransition.addLabelHoverBackgroundTransition;
+import  Utilities.BackGroundTransition.addLabelHoverBackgroundTransition;
 import static java.awt.Color.*;
 
 public class Main {
