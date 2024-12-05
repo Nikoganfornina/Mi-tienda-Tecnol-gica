@@ -102,5 +102,31 @@
         ]
       }
     ]
-  }
+  },
+  "clientes": [
+    {
+      "id": 1,
+      "nombre": "Carla Domínguez",
+      "imagen": "ClientsImages/Carla.png",
+      "correo": "carla.dominguez@example.com",
+      "telefono": "612345678",
+      "direccion": "Calle Gran Vía 45, Madrid"
+    },
+    {
+      "id": 2,
+      "nombre": "Andrea Catalán",
+      "imagen": "ClientsImages/Andrea.png",
+      "correo": "andrea.catalan@example.com",
+      "telefono": "654987321",
+      "direccion": "Avenida del Sol 23, Barcelona"
+    },
+    {
+      "id": 3,
+      "nombre": "Víctor Bejar",
+      "imagen": "ClientsImages/Victor.png",
+      "correo": "victor.bejar@example.com",
+      "telefono": "678123456",
+      "direccion": "Calle de los Olivos 12, Sevilla"
+    }
+  ]
 }
