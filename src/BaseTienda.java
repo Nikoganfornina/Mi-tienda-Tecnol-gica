@@ -104,6 +104,7 @@ public class BaseTienda {
             System.out.println("Error al insertar clientes: " + e.getMessage());
         }
     }
+
     public static void insertarProductosDesdeJSON() {
         String insertSQL = "INSERT INTO productos (id, nombre, precio, descripcion, caracteristicas, imagen1, imagen2) VALUES (?, ?, ?, ?, ?, ?, ?)";
         String jsonPath = "src/Tienda.json"; // Ruta al archivo JSON
@@ -114,7 +115,6 @@ public class BaseTienda {
             // Leer el archivo JSON
             JSONParser parser = new JSONParser();
             JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(jsonPath));
-
 
 
             // Verificar que la clave "tienda" existe en el JSON
@@ -190,7 +190,6 @@ public class BaseTienda {
     }
 
 
-
     public static void verTodosLosProductos() {
         String sql = "SELECT * FROM productos";
 
@@ -215,6 +214,7 @@ public class BaseTienda {
             System.out.println("Error al mostrar los productos: " + e.getMessage());
         }
     }
+
     public static void verTodosLosClientes() {
         String sql = "SELECT * FROM clientes";
 
@@ -258,9 +258,9 @@ public class BaseTienda {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH);
              PreparedStatement stmt = conn.prepareStatement(selectSQL)) {
 
-            stmt.setInt(1,id);
+            stmt.setInt(1, id);
 
-            try(ResultSet rs = stmt.executeQuery()) {
+            try (ResultSet rs = stmt.executeQuery()) {
 
                 while (rs.next()) {
                     imagenes[0] = rs.getString("imagen1");
@@ -273,4 +273,49 @@ public class BaseTienda {
         }
         return imagenes;
     }
+
+    public static String DevolverCliente(int id) {
+        String selectSQL = "SELECT imagen FROM clientes WHERE id = ?";
+
+        String imagen = "";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH);
+             PreparedStatement stmt = conn.prepareStatement(selectSQL)) {
+
+            stmt.setInt(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    imagen = rs.getString("imagen");
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener la imagen: " + e.getMessage());
+        }
+
+        return imagen;
+    }
+
+    public static String DevolverNombre(int id) {
+        String selectSQL = "SELECT nombre FROM clientes WHERE id = ?";
+
+        String nombre = "";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH);
+             PreparedStatement stmt = conn.prepareStatement(selectSQL)) {
+
+            stmt.setInt(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    nombre = rs.getString("nombre");
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener el nombre: " + e.getMessage());
+        }
+
+        return nombre;}
 }

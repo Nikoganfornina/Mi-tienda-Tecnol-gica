@@ -135,7 +135,6 @@ public class Producto {
 
         addLabelHoverEffect(f3, 1, 1.1);
 
-
         PortatilesBc.setVisible(true);
         return PortatilesBc;
     }

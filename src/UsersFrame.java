@@ -135,7 +135,7 @@ public class UsersFrame {
         // Label for the text inside the background center label
 
         JLabel textborder = new JLabel();
-        textborder.setBounds(300, 10, 680, 150);
+        textborder.setBounds(300, 5, 680, 150);
         String title = " U S E R S ";
         String info = "De lo último en gadgets a los imprescindibles del día a día, aquí encontrarás lo que te hace falta...   ¡y lo que no sabías que necesitabas!";
         textborder.setText("<html><div style='text-align: center;'>" +
@@ -150,47 +150,58 @@ public class UsersFrame {
 
         // PRODUCT NUMBER ONE
 
-        RoundedBorder product1 = new RoundedBorder( "" , ColorsNk.Transparent_Nk, 30);
-        product1.setBounds(150, 200, 300, 350);
-        product1.setBorderProperties(Color.white, 5);
+        ImageIcon resizedImage = resizeimage(BaseTienda.DevolverCliente(1), 0.5);
+        RoundedImageIcon product1 = new RoundedImageIcon(resizedImage, 30);
+        product1.setBounds(150, 170, 300, 350);
+        product1.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundc.add(product1);
+        addLabelHoverEffect(product1, 1, 1.1);
+
+        RoundedBorder LearnMore = new RoundedBorder(BaseTienda.DevolverNombre(1), WHITE, 25);
+        LearnMore.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
+        LearnMore.setForeground(ColorsNk.Verde_Nk);
+        LearnMore.setBounds(180, 540, 250, 50);
+        addLabelHoverEffect(LearnMore, 1, 1.15);
+        LearnMore.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        backgroundc.add(LearnMore);
 
         // PRODUCT NUMBER TWO
-
-        RoundedBorder product2 = new RoundedBorder( "" , ColorsNk.Transparent_Nk, 30);
-        product2.setBounds(500, 200, 300, 350);
-        product2.setBorderProperties(Color.white, 5);
+        
+        ImageIcon resizedImage1 = resizeimage(BaseTienda.DevolverCliente(2), 0.5);
+        RoundedImageIcon product2 = new RoundedImageIcon(resizedImage1, 30);
+        product2.setBounds(500, 170, 300, 350);
+        product2.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundc.add(product2);
+        addLabelHoverEffect(product2, 1, 1.1);
+
+        RoundedBorder LearnMore1 = new RoundedBorder(BaseTienda.DevolverNombre(2), WHITE, 25);
+        LearnMore1.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
+        LearnMore1.setForeground(ColorsNk.Verde_Nk);
+        LearnMore1.setBounds(530, 540, 250, 50);
+        addLabelHoverEffect(LearnMore1, 1, 1.15);
+        LearnMore1.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        backgroundc.add(LearnMore1);
+
 
         // PRODUCT NUMBER THREE
 
-        RoundedBorder product3 = new RoundedBorder( "" , ColorsNk.Transparent_Nk, 30);
-        product3.setBounds(850, 200, 300, 350);
-        product3.setBorderProperties(Color.white, 5);
+        ImageIcon resizedImage2 = resizeimage(BaseTienda.DevolverCliente(3), 0.5);
+        RoundedImageIcon product3 = new RoundedImageIcon(resizedImage2, 30);
+        product3.setBounds(850, 170, 300, 350);
+        product3.setHorizontalAlignment(SwingConstants.CENTER);
         backgroundc.add(product3);
+        addLabelHoverEffect(product3, 1, 1.1);
+
+        RoundedBorder LearnMore2 = new RoundedBorder(BaseTienda.DevolverNombre(3), WHITE, 25);
+        LearnMore2.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
+        LearnMore2.setForeground(ColorsNk.Verde_Nk);
+        LearnMore2.setBounds(880, 540, 250, 50);
+        addLabelHoverEffect(LearnMore2, 1, 1.15);
+        LearnMore2.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        backgroundc.add(LearnMore2);
 
 
-        // Next Characteristics
 
-        RoundedBorder next = new RoundedBorder(" S i g u i e n t e ", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
-        next.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
-        next.setForeground(Color.WHITE);
-        next.setBorderProperties(ColorsNk.Transparent_Nk, 1);
-        next.setBounds(830, 765, 250, 50);
-        addLabelHoverEffect(next, 1, 1.15);
-        addLabelClickEffect(next, 1, 1.1);
-        ventana1.add(next);
-
-        // after Characteristics
-
-        RoundedBorder after = new RoundedBorder(" A n t e r i o r ", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
-        after.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
-        after.setForeground(Color.WHITE);
-        after.setBorderProperties(ColorsNk.Transparent_Nk, 1);
-        after.setBounds(470, 765, 250, 50);
-        addLabelHoverEffect(after, 1, 1.15);
-        addLabelClickEffect(after, 1, 1.1);
-        ventana1.add(after);
 
         //------------ HEADER ADDS -------------
 
