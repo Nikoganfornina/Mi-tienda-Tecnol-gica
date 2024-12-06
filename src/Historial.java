@@ -57,12 +57,27 @@ public class Historial {
         }
     }
 
+    public static void borrarTodosLosDatosDeCompra() {
+        String sql = "DELETE FROM Historial";
+
+        try (Connection conn = DriverManager.getConnection(DB_PATH);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            int rowsDeleted = stmt.executeUpdate();
+            System.out.println("Se han borrado " + rowsDeleted + " registros de la tabla Historial.");
+        } catch (SQLException e) {
+            System.err.println("Error al borrar los datos de la tabla Historial: " + e.getMessage());
+        }
+    }
+
+
     /**
      * Método principal de ejemplo.
      */
     public static void main(String[] args) {
         Historial historial = new Historial();
 
+        borrarTodosLosDatosDeCompra();
+        /*
         // Inserciones manuales basadas en el JSON de ejemplo
         historial.insertarHistorialManual(1, 101, 1, "2023-12-01");
         historial.insertarHistorialManual(1, 107, 3, "2023-11-25");
@@ -75,5 +90,7 @@ public class Historial {
         historial.insertarHistorialManual(3, 105, 2, "2023-12-03");
         historial.insertarHistorialManual(3, 106, 1, "2023-11-15");
         historial.insertarHistorialManual(3, 108, 1, "2023-10-10");
+
+         */
     }
 }

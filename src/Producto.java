@@ -150,6 +150,7 @@ public class Producto {
                 "<span style='font-size: 30px; font-weight: bold;'>" + title + "</span>" +
                 "</div></html>");
         textborder.setHorizontalAlignment(SwingConstants.CENTER);
+        textborder.setVerticalAlignment(SwingConstants.TOP);
         textborder.setForeground(Color.WHITE);
         PortatilesBc.add(textborder);
 
@@ -160,8 +161,25 @@ public class Producto {
         ImageIcon Category1 = resizeimage(imagenes1[0], 0.22);
         ImageIcon hoverCategory1 = resizeimage(imagenes1[1], 0.24);
         Blurred f1 = new Blurred(Category1, hoverCategory1, 25); // Redondear imagen con difuminado
-        f1.setBounds(150, 170, 250, 400);
+        f1.setBounds(150, 90, 250, 400);
         PortatilesBc.add(f1);
+
+        RoundedBorder comprar1 = new RoundedBorder(" C o m p r a r ", Color.white, 25); // Color y radio de esquinas
+        comprar1.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
+        comprar1.setForeground(ColorsNk.Verde_Nk);
+        comprar1.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        comprar1.setBounds(150, 520, 250, 50);
+        addLabelHoverEffect(comprar1, 1, 1.15);
+        PortatilesBc.add(comprar1);
+
+        comprar1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JOptionPane.showMessageDialog(null, "Compra realizada con \u00e9xito, consulte el historial de compras");
+                BaseTienda.insertarHistorial(UsersFrame.idClienteSeleccionado, 104, BaseTienda.obtenerFechaActual());
+
+            }
+        });
 
         // Agregar efecto hover para botones (opcional, si tienes otros efectos)
         addLabelHoverEffect(f1, 1, 1.1);
@@ -173,9 +191,28 @@ public class Producto {
         ImageIcon Category2 = resizeimage(imagenes2[0], 0.22);
         ImageIcon hoverCategory2 = resizeimage(imagenes2[1], 0.24);
         Blurred f2 = new Blurred( Category2,hoverCategory2, 25);
-        f2.setBounds(525, 170, 250, 400);
+        f2.setBounds(525, 90, 250, 400);
         PortatilesBc.add(f2);
         addLabelHoverEffect(f2, 1, 1.1);
+
+        RoundedBorder comprar2 = new RoundedBorder(" C o m p r a r ", Color.white, 25);
+        comprar2.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
+        comprar2.setForeground(ColorsNk.Verde_Nk);
+        comprar2.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        comprar2.setBounds(525, 520, 250, 50);
+        addLabelHoverEffect(comprar2, 1, 1.15);
+        PortatilesBc.add(comprar2);
+
+        comprar2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JOptionPane.showMessageDialog(null, "Compra realizada con \u00e9xito, consulte el historial de compras");
+                BaseTienda.insertarHistorial(UsersFrame.idClienteSeleccionado, 105,BaseTienda.obtenerFechaActual() ); // 1 es el productoId de Producto 1
+
+            }
+        });
+
+
 
         // PRODUCT NUMBER THREE
 
@@ -184,10 +221,28 @@ public class Producto {
         ImageIcon Category3 = resizeimage(imagenes3[0], 0.22);
         ImageIcon hoverCategory3 = resizeimage(imagenes3[1], 0.24);
         Blurred f3 = new Blurred( Category3,hoverCategory3, 25);
-        f3.setBounds(900, 170, 250, 400);
+        f3.setBounds(900, 90, 250, 400);
         PortatilesBc.add(f3);
 
         addLabelHoverEffect(f3, 1, 1.1);
+
+
+        RoundedBorder comprar3 = new RoundedBorder(" C o m p r a r ", Color.white, 25); // Color y radio de esquinas
+        comprar3.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
+        comprar3.setForeground(ColorsNk.Verde_Nk);
+        comprar3.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        comprar3.setBounds(900, 520, 250, 50);
+        addLabelHoverEffect(comprar3, 1, 1.15);
+        PortatilesBc.add(comprar3);
+
+        comprar3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JOptionPane.showMessageDialog(null, "Compra realizada con \u00e9xito, consulte el historial de compras");
+                BaseTienda.insertarHistorial(UsersFrame.idClienteSeleccionado, 106, BaseTienda.obtenerFechaActual()); // 1 es el productoId de Producto 1
+
+            }
+        });
 
         PortatilesBc.setVisible(true);
         return PortatilesBc;
@@ -209,6 +264,7 @@ public class Producto {
                 "<span style='font-size: 30px; font-weight: bold;'>" + title + "</span>" +
                 "</div></html>");
         textborder.setHorizontalAlignment(SwingConstants.CENTER);
+        textborder.setVerticalAlignment(SwingConstants.TOP);
         textborder.setForeground(Color.WHITE);
         AccesoriosBc.add(textborder);
 
@@ -219,8 +275,27 @@ public class Producto {
         ImageIcon Category1 = resizeimage(imagenes1[0], 0.22);
         ImageIcon hoverCategory1 = resizeimage(imagenes1[1], 0.24);
         Blurred f1 = new Blurred(Category1, hoverCategory1, 25); // Redondear imagen con difuminado
-        f1.setBounds(150, 170, 250, 400);
+        f1.setBounds(150, 90, 250, 400);
         AccesoriosBc.add(f1);
+
+
+        RoundedBorder comprar1 = new RoundedBorder(" C o m p r a r ", Color.white, 25); // Color y radio de esquinas
+        comprar1.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
+        comprar1.setForeground(ColorsNk.Verde_Nk);
+        comprar1.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        comprar1.setBounds(150, 520, 250, 50);
+        addLabelHoverEffect(comprar1, 1, 1.15);
+        AccesoriosBc.add(comprar1);
+
+        comprar1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JOptionPane.showMessageDialog(null, "Compra realizada con \u00e9xito, consulte el historial de compras");
+                BaseTienda.insertarHistorial(UsersFrame.idClienteSeleccionado, 107, BaseTienda.obtenerFechaActual());
+
+            }
+        });
+
 
         // Agregar efecto hover para botones (opcional, si tienes otros efectos)
         addLabelHoverEffect(f1, 1, 1.1);
@@ -232,9 +307,26 @@ public class Producto {
         ImageIcon Category2 = resizeimage(imagenes2[0], 0.22);
         ImageIcon hoverCategory2 = resizeimage(imagenes2[1], 0.24);
         Blurred f2 = new Blurred( Category2,hoverCategory2, 25);
-        f2.setBounds(525, 170, 250, 400);
+        f2.setBounds(525, 90, 250, 400);
         AccesoriosBc.add(f2);
         addLabelHoverEffect(f2, 1, 1.1);
+
+        RoundedBorder comprar2 = new RoundedBorder(" C o m p r a r ", Color.white, 25);
+        comprar2.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
+        comprar2.setForeground(ColorsNk.Verde_Nk);
+        comprar2.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        comprar2.setBounds(525, 520, 250, 50);
+        addLabelHoverEffect(comprar2, 1, 1.15);
+        AccesoriosBc.add(comprar2);
+
+        comprar2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JOptionPane.showMessageDialog(null, "Compra realizada con \u00e9xito, consulte el historial de compras");
+                BaseTienda.insertarHistorial(UsersFrame.idClienteSeleccionado, 108,BaseTienda.obtenerFechaActual() ); // 1 es el productoId de Producto 1
+
+            }
+        });
 
         // PRODUCT NUMBER THREE
 
@@ -244,10 +336,27 @@ public class Producto {
         ImageIcon Category3 = resizeimage(imagenes3[0], 0.22);
         ImageIcon hoverCategory3 = resizeimage(imagenes3[1], 0.24);
         Blurred f3 = new Blurred( Category3,hoverCategory3, 25);
-        f3.setBounds(900, 170, 250, 400);
+        f3.setBounds(900, 90, 250, 400);
         AccesoriosBc.add(f3);
 
         addLabelHoverEffect(f3, 1, 1.1);
+
+        RoundedBorder comprar3 = new RoundedBorder(" C o m p r a r ", Color.white, 25); // Color y radio de esquinas
+        comprar3.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
+        comprar3.setForeground(ColorsNk.Verde_Nk);
+        comprar3.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+        comprar3.setBounds(900, 520, 250, 50);
+        addLabelHoverEffect(comprar3, 1, 1.15);
+        AccesoriosBc.add(comprar3);
+
+        comprar3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JOptionPane.showMessageDialog(null, "Compra realizada con \u00e9xito, consulte el historial de compras");
+                BaseTienda.insertarHistorial(UsersFrame.idClienteSeleccionado, 109 , BaseTienda.obtenerFechaActual()); // 1 es el productoId de Producto 1
+
+            }
+        });
 
 
         AccesoriosBc.setVisible(true);
