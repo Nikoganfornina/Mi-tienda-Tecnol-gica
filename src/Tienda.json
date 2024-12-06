@@ -110,7 +110,24 @@
       "imagen": "ClientsImages/Carla.png",
       "correo": "carla.dominguez@example.com",
       "telefono": "612345678",
-      "direccion": "Calle Gran Vía 45, Madrid"
+      "direccion": "Calle Gran Vía 45, Madrid",
+      "historialCompras": [
+        {
+          "productoId": 101,
+          "cantidad": 1,
+          "fecha": "2023-12-01"
+        },
+        {
+          "productoId": 107,
+          "cantidad": 3,
+          "fecha": "2023-11-25"
+        },
+        {
+          "productoId": 103,
+          "cantidad": 2,
+          "fecha": "2023-10-20"
+        }
+      ]
     },
     {
       "id": 2,
@@ -118,7 +135,24 @@
       "imagen": "ClientsImages/Andrea.png",
       "correo": "andrea.catalan@example.com",
       "telefono": "654987321",
-      "direccion": "Avenida del Sol 23, Barcelona"
+      "direccion": "Avenida del Sol 23, Barcelona",
+      "historialCompras": [
+        {
+          "productoId": 102,
+          "cantidad": 1,
+          "fecha": "2023-12-05"
+        },
+        {
+          "productoId": 104,
+          "cantidad": 1,
+          "fecha": "2023-11-28"
+        },
+        {
+          "productoId": 109,
+          "cantidad": 2,
+          "fecha": "2023-10-15"
+        }
+      ]
     },
     {
       "id": 3,
@@ -126,7 +160,24 @@
       "imagen": "ClientsImages/Victor.png",
       "correo": "victor.bejar@example.com",
       "telefono": "678123456",
-      "direccion": "Calle de los Olivos 12, Sevilla"
+      "direccion": "Calle de los Olivos 12, Sevilla",
+      "historialCompras": [
+        {
+          "productoId": 105,
+          "cantidad": 2,
+          "fecha": "2023-12-03"
+        },
+        {
+          "productoId": 106,
+          "cantidad": 1,
+          "fecha": "2023-11-15"
+        },
+        {
+          "productoId": 108,
+          "cantidad": 1,
+          "fecha": "2023-10-10"
+        }
+      ]
     }
   ]
 }

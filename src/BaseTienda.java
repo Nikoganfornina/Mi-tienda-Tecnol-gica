@@ -247,7 +247,6 @@ public class BaseTienda {
         insertarProductosDesdeJSON();
         verTodosLosProductos();
         verTodosLosClientes();
-
     }
 
     public static String[] devolverImagen(int id) {
@@ -318,4 +317,59 @@ public class BaseTienda {
         }
 
         return nombre;}
+
+    public static String DevolverInfoCliente(int id) {
+        String selectSQL = "SELECT nombre, correo, telefono, direccion FROM clientes WHERE id = ?";
+        StringBuilder info = new StringBuilder();
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH);
+             PreparedStatement stmt = conn.prepareStatement(selectSQL)) {
+
+            stmt.setInt(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    info.append("- Nombre: ").append(rs.getString("nombre")).append("\n");
+                    info.append("- Correo: ").append(rs.getString("correo")).append("\n");
+                    info.append("- Teléfono: ").append(rs.getString("telefono")).append("\n");
+                    info.append("- Dirección: ").append(rs.getString("direccion")).append("\n");
+                } else {
+                    info.append("No se encontró información para el cliente con ID: ").append(id);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener la información del cliente: " + e.getMessage());
+        }
+
+        return info.toString();
+    }
+    public static String DevolverIdCliente(int id) {
+        String selectSQL = "SELECT id FROM clientes WHERE id = ?";
+        String info = "";  // Usamos una cadena simple para almacenar el resultado
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH);
+             PreparedStatement stmt = conn.prepareStatement(selectSQL)) {
+
+            stmt.setInt(1, id);  // Establecemos el parámetro en la consulta
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // Si encontramos el cliente, obtenemos el id (o lo que necesites)
+                    info = rs.getString("id");  // Asignamos el id a la variable info
+                } else {
+                    // Si no se encuentra el cliente
+                    info = "No se encontró información para el cliente con ID: " + id;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al obtener la información del cliente: " + e.getMessage());
+            info = "Error al obtener la información del cliente: " + e.getMessage();
+        }
+
+        return info;  // Devolvemos el valor de info
+    }
+
+
 }

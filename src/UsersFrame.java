@@ -9,31 +9,32 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import static Utilities.BackGroundTransition.addLabelHoverBackgroundTransition;
-import static java.awt.Color.WHITE;
+import static java.awt.Color.*;
 
 import Utilities.ColorsNk;
 import Utilities.RoundedBorder;
 import Utilities.RoundedImageIcon;
 
 import javax.swing.*;
-        import java.awt.*;
-        import java.awt.event.ActionEvent;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
-
-import static java.awt.Color.BLACK;
-import static java.awt.Color.WHITE;
-
 public class UsersFrame {
 
+    private static JLabel clientLabel1;
+    private JLabel clientLabel2;
+    private JLabel clientLabel3;
 
 
     public static void CreateWindow2() {
 
         // If there is any JLabel in the project, set opaque to false
+
+
 
         JFrame ventana1 = new JFrame("Ventana 2");
         ventana1.setSize(1500, 900);
@@ -54,7 +55,7 @@ public class UsersFrame {
         // Tittle Characteristics
         JLabel tittle = new JLabel("Mi Tienda Tecnologica ");
         tittle.setFont(new Font("Arial", Font.HANGING_BASELINE, 28));
-        tittle.setForeground(Color.BLACK); // Asegúrate de usar Color.BLACK si no tienes una constante BLACK
+        tittle.setForeground(BLACK); // Asegúrate de usar Color.BLACK si no tienes una constante BLACK
         tittle.setBounds(200, -10, 350, 150);
 
 
@@ -83,7 +84,7 @@ public class UsersFrame {
 
         RoundedBorder contact = new RoundedBorder("C o n t a c t  U s", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
         contact.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
-        contact.setForeground(Color.WHITE);
+        contact.setForeground(WHITE);
         contact.setBorderProperties(ColorsNk.Transparent_Nk, 1);
         contact.setBounds(1150, 40, 250, 50);
         addLabelHoverEffect(contact, 1, 1.15);
@@ -93,10 +94,9 @@ public class UsersFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 new ContactUsFrame().main();
-                ventana1.dispose();            }
+                ventana1.dispose();
+            }
         });
-
-
 
 
         // ImagenIcon icon add
@@ -107,7 +107,7 @@ public class UsersFrame {
 
         //  Home Icon add
 
-        ImageIcon homeIcon = resizeimage( "Images/HomeSvg.png", 0.2);
+        ImageIcon homeIcon = resizeimage("Images/HomeSvg.png", 0.2);
         JLabel roundedHomeIcon = new JLabel(homeIcon);
         roundedHomeIcon.setBounds(500, 43, homeIcon.getIconWidth(), homeIcon.getIconHeight());
         header.add(roundedHomeIcon);
@@ -127,8 +127,8 @@ public class UsersFrame {
 
 
         // BackGround center  page
-        RoundedBorder backgroundc = new RoundedBorder( "" , ColorsNk.Verde_Nk, 30);
-        backgroundc.setBounds(120 , 125, 1275, 600);
+        RoundedBorder backgroundc = new RoundedBorder("", ColorsNk.Verde_Nk, 30);
+        backgroundc.setBounds(120, 125, 1275, 600);
         backgroundc.setOpaque(false);
         backgroundc.setBorderProperties(ColorsNk.Transparent_Nk, 1);
 
@@ -145,10 +145,10 @@ public class UsersFrame {
 
         textborder.setHorizontalAlignment(SwingConstants.CENTER);
         textborder.setVerticalAlignment(SwingConstants.CENTER);
-        textborder.setForeground(Color.WHITE);
+        textborder.setForeground(WHITE);
         backgroundc.add(textborder);
 
-        // PRODUCT NUMBER ONE
+        // CLIENT NUMBER ONE
 
         ImageIcon resizedImage = resizeimage(BaseTienda.DevolverCliente(1), 0.5);
         RoundedImageIcon product1 = new RoundedImageIcon(resizedImage, 30);
@@ -165,8 +165,50 @@ public class UsersFrame {
         LearnMore.setBorderProperties(ColorsNk.Transparent_Nk, 1);
         backgroundc.add(LearnMore);
 
-        // PRODUCT NUMBER TWO
-        
+
+        product1.addMouseListener(new MouseAdapter() {
+            RoundedBorder clientLabel1 = null; // Declarado fuera del MouseListener
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // Si no se ha creado el label, lo creamos
+                if (clientLabel1 == null) {
+                    String clientInfo = BaseTienda.DevolverInfoCliente(1);
+
+                    // Crear RoundedBorder
+                    clientLabel1 = new RoundedBorder("<html>" + clientInfo.replace("\n", "<br>") + "</html>", Color.WHITE, 25);
+                    clientLabel1.setFont(new Font("Arial", Font.PLAIN, 20));
+                    clientLabel1.setForeground(ColorsNk.Verde_Nk);
+                    clientLabel1.setBounds(600, 200, 450, 300);
+
+                    // Configurar propiedades del borde
+                    clientLabel1.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+
+                    backgroundc.add(clientLabel1);
+                    backgroundc.setComponentZOrder(clientLabel1, 0);
+                    clientLabel1.setHorizontalAlignment(SwingConstants.LEFT);
+                    clientLabel1.setVerticalAlignment(SwingConstants.TOP);
+
+                    // Redibujar y revalidar
+                    backgroundc.revalidate();
+                    backgroundc.repaint();
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // Si el label existe, lo eliminamos
+                if (clientLabel1 != null) {
+                    backgroundc.remove(clientLabel1);
+                    backgroundc.revalidate();
+                    backgroundc.repaint();
+
+                    clientLabel1 = null;
+                }
+            }
+        });
+        // CLIENT NUMBER TWO
+
         ImageIcon resizedImage1 = resizeimage(BaseTienda.DevolverCliente(2), 0.5);
         RoundedImageIcon product2 = new RoundedImageIcon(resizedImage1, 30);
         product2.setBounds(500, 170, 300, 350);
@@ -182,8 +224,53 @@ public class UsersFrame {
         LearnMore1.setBorderProperties(ColorsNk.Transparent_Nk, 1);
         backgroundc.add(LearnMore1);
 
+        product2.addMouseListener(new MouseAdapter() {
+            RoundedBorder clientLabel1 = null; // Declarado fuera del MouseListener
 
-        // PRODUCT NUMBER THREE
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // Si no se ha creado el label, lo creamos
+                if (clientLabel1 == null) {
+                    String clientInfo = BaseTienda.DevolverInfoCliente(2);
+
+                    // Crear RoundedBorder
+                    clientLabel1 = new RoundedBorder("<html>" + clientInfo.replace("\n", "<br>") + "</html>", Color.WHITE, 25);
+                    clientLabel1.setFont(new Font("Arial", Font.PLAIN, 20));
+                    clientLabel1.setForeground(ColorsNk.Verde_Nk);
+                    clientLabel1.setBounds(20, 200, 450, 300);
+
+                    // Configurar propiedades del borde
+                    clientLabel1.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+
+                    // Alineamos el texto en la esquina superior izquierda
+                    clientLabel1.setHorizontalAlignment(SwingConstants.LEFT);
+                    clientLabel1.setVerticalAlignment(SwingConstants.TOP);
+
+                    backgroundc.add(clientLabel1);
+                    backgroundc.setComponentZOrder(clientLabel1, 0); // Aseguramos que esté al frente
+
+                    // Redibujar y revalidar
+                    backgroundc.revalidate();
+                    backgroundc.repaint();
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // Si el label existe, lo eliminamos
+                if (clientLabel1 != null) {
+                    backgroundc.remove(clientLabel1);
+                    backgroundc.revalidate();
+                    backgroundc.repaint();
+
+                    clientLabel1 = null;
+                }
+            }
+        });
+
+
+
+        // CLIENT NUMBER THREE
 
         ImageIcon resizedImage2 = resizeimage(BaseTienda.DevolverCliente(3), 0.5);
         RoundedImageIcon product3 = new RoundedImageIcon(resizedImage2, 30);
@@ -200,8 +287,47 @@ public class UsersFrame {
         LearnMore2.setBorderProperties(ColorsNk.Transparent_Nk, 1);
         backgroundc.add(LearnMore2);
 
+        product3.addMouseListener(new MouseAdapter() {
+            RoundedBorder clientLabel1 = null;
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // Si no se ha creado el label, lo creamos
+                if (clientLabel1 == null) {
+                    String clientInfo = BaseTienda.DevolverInfoCliente(3);
+
+                    // Crear RoundedBorder
+                    clientLabel1 = new RoundedBorder("<html>" + clientInfo.replace("\n", "<br>") + "</html>", Color.WHITE, 25);
+                    clientLabel1.setFont(new Font("Arial", Font.PLAIN, 20));
+                    clientLabel1.setForeground(ColorsNk.Verde_Nk);
+                    clientLabel1.setBounds(200, 200, 450, 300);
+
+                    clientLabel1.setBorderProperties(ColorsNk.Transparent_Nk, 1);
+                    clientLabel1.setHorizontalAlignment(SwingConstants.LEFT);
+                    clientLabel1.setVerticalAlignment(SwingConstants.TOP);
 
 
+                    backgroundc.add(clientLabel1);
+                    backgroundc.setComponentZOrder(clientLabel1, 0);
+
+                    // Redibujar y revalidar
+                    backgroundc.revalidate();
+                    backgroundc.repaint();
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // Si el label existe, lo eliminamos
+                if (clientLabel1 != null) {
+                    backgroundc.remove(clientLabel1);
+                    backgroundc.revalidate();
+                    backgroundc.repaint();
+
+                    clientLabel1 = null;
+                }
+            }
+        });
 
         //------------ HEADER ADDS -------------
 
@@ -262,12 +388,12 @@ public class UsersFrame {
         int totalDuration = 500; // Total 500ms (medio segundo)
         int steps = totalDuration / animationSpeed;
 
-        label.addMouseListener(new java.awt.event.MouseAdapter() {
+        label.addMouseListener(new MouseAdapter() {
             Timer expandTimer = new Timer(animationSpeed, null);
             Timer shrinkTimer = new Timer(animationSpeed, null);
 
             @Override
-            public void mouseEntered(java.awt.event.MouseEvent e) {
+            public void mouseEntered(MouseEvent e) {
                 expandTimer.stop();
                 shrinkTimer.stop();
 
@@ -296,7 +422,7 @@ public class UsersFrame {
             }
 
             @Override
-            public void mouseExited(java.awt.event.MouseEvent e) {
+            public void mouseExited(MouseEvent e) {
                 expandTimer.stop();
                 shrinkTimer.stop();
 
@@ -327,11 +453,6 @@ public class UsersFrame {
     }
 
 
-
-
-
-
-
     public static void addLabelClickEffect(JLabel label, double originalPercentage, double clickedPercentage) {
         // Guardamos el tamaño original del JLabel
         Dimension originalSize = label.getSize();
@@ -342,11 +463,11 @@ public class UsersFrame {
         int clickedWidth = (int) (originalSize.width * clickedPercentage);
         int clickedHeight = (int) (originalSize.height * clickedPercentage);
 
-        label.addMouseListener(new java.awt.event.MouseAdapter() {
+        label.addMouseListener(new MouseAdapter() {
             private boolean isClicked = false; // Para alternar entre los dos tamaños
 
             @Override
-            public void mouseClicked(java.awt.event.MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 if (!isClicked) {
                     // Cambiar al tamaño de clic (expandir)
                     label.setBounds(label.getX(), label.getY(), clickedWidth, clickedHeight);
@@ -366,14 +487,14 @@ public class UsersFrame {
         ImageIcon resizedClickIcon = resizeimage(originalIcon, clickPercentage);
         ImageIcon resizedOriginalIcon = resizeimage(originalIcon, originalPercentage);
 
-        label.addMouseListener(new java.awt.event.MouseAdapter() {
+        label.addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(java.awt.event.MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 label.setIcon(resizedClickIcon); // Change to click size
             }
 
             @Override
-            public void mouseReleased(java.awt.event.MouseEvent e) {
+            public void mouseReleased(MouseEvent e) {
                 label.setIcon(resizedOriginalIcon); // Revert to original size
             }
         });
