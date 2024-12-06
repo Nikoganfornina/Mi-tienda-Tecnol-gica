@@ -65,6 +65,7 @@ public class ProductsFrame {
             }
         });
 
+
         // Contact Characteristics
 
         RoundedBorder contact = new RoundedBorder("C o n t a c t  U s", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
@@ -235,19 +236,8 @@ public class ProductsFrame {
 
 
 
+
         /*
-
-        // Next Characteristics
-
-        RoundedBorder next = new RoundedBorder(" S i g u i e n t e ", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas
-        next.setFont(new Font("Arial", Font.HANGING_BASELINE, 24));
-        next.setForeground(Color.WHITE);
-        next.setBorderProperties(ColorsNk.Transparent_Nk, 1);
-        next.setBounds(830, 765, 250, 50);
-        addLabelHoverEffect(next, 1, 1.15);
-        addLabelClickEffect(next, 1, 1.1);
-        ventana1.add(next);
-
         // after Characteristics
 
         RoundedBorder after = new RoundedBorder(" A n t e r i o r ", ColorsNk.Verde_Nk, 25); // Color y radio de esquinas

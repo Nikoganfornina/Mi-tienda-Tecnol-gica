@@ -1,12 +1,9 @@
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
+import java.sql.*;
+import java.util.Date;
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -16,6 +13,18 @@ public class BaseTienda {
 
     private static final String DB_PATH = "src/BaseTienda.db";
 
+    public static void conectarBaseDatos() {
+        try {
+            // Asegúrate de que la ruta es correcta
+            String url = "jdbc:sqlite:src/BaseTienda.db";
+            Connection conn = DriverManager.getConnection(url);
+            if (conn != null) {
+                System.out.println("Conexión a la base de datos establecida");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al conectar a la base de datos: " + e.getMessage());
+        }
+    }
     // Crear base de datos
     public static void crearBaseDeDatos() {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH)) {
@@ -48,6 +57,57 @@ public class BaseTienda {
         } catch (SQLException e) {
             System.out.println("Error al crear la tabla: " + e.getMessage());
         }
+    }
+
+
+
+    public static String obtenerFechaActual() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date fecha = new Date();
+        return sdf.format(fecha);
+    }
+    public static void insertarHistorial(int clienteId, int productoId, String fecha) {
+        String sql = "INSERT INTO Historial (clienteId, productoId, cantidad, fecha) VALUES (?, ?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:src/BaseTienda.db");
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, clienteId);      // ID del cliente
+            stmt.setInt(2, productoId);     // ID del producto
+            stmt.setInt(3, 1);              // Cantidad (1 por defecto)
+            stmt.setString(4, fecha);       // Fecha de compra
+
+            stmt.executeUpdate();
+            System.out.println("Compra registrada con éxito.");
+        } catch (SQLException e) {
+            System.err.println("Error al insertar en la tabla Historial: " + e.getMessage());
+        }
+    }
+
+
+
+    public static String DevolverHistorialCompras(int clienteId) {
+        String historial = "";
+        String sql = "SELECT productoId ,  cantidad , fecha FROM Historial WHERE clienteId = ? ORDER BY fecha DESC";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + DB_PATH);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, clienteId);  // Asignar el clienteId al parámetro de la consulta
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    String producto = rs.getString("productoId");
+                    String cantidad = rs.getString("cantidad");
+                    String fechaCompra = rs.getString("fecha");
+                    historial += "Producto: " + producto + " | Cantidad: " + cantidad + " | Fecha: " + fechaCompra + "\n";
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return historial.isEmpty() ? "No se encontraron compras." : historial;
     }
 
     // Crear tabla clientes
@@ -240,6 +300,8 @@ public class BaseTienda {
     }
 
     public static void main(String[] args) {
+
+        conectarBaseDatos();
         crearBaseDeDatos();
         crearTablaProductos();
         crearTablaClientes();

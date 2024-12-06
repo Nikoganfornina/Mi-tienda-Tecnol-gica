@@ -29,8 +29,10 @@ public class UsersFrame {
     private JLabel clientLabel2;
     private JLabel clientLabel3;
 
+    static int idClienteSeleccionado = -1;  // Inicializa a un valor negativo o nulo, que indica que no hay cliente seleccionado
 
     public static void CreateWindow2() {
+
 
         // If there is any JLabel in the project, set opaque to false
 
@@ -165,18 +167,25 @@ public class UsersFrame {
         LearnMore.setBorderProperties(ColorsNk.Transparent_Nk, 1);
         backgroundc.add(LearnMore);
 
-
         product1.addMouseListener(new MouseAdapter() {
-            RoundedBorder clientLabel1 = null; // Declarado fuera del MouseListener
+            RoundedBorder clientLabel1 = null;
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 // Si no se ha creado el label, lo creamos
                 if (clientLabel1 == null) {
-                    String clientInfo = BaseTienda.DevolverInfoCliente(1);
+                    String clientInfo = BaseTienda.DevolverInfoCliente(1); // Info principal
+                    String historial = BaseTienda.DevolverHistorialCompras(1); // Historial adicional
 
-                    // Crear RoundedBorder
-                    clientLabel1 = new RoundedBorder("<html>" + clientInfo.replace("\n", "<br>") + "</html>", Color.WHITE, 25);
+                    // Crear RoundedBorder con información concatenada
+                    clientLabel1 = new RoundedBorder(
+                            "<html>" +
+                                    clientInfo.replace("\n", "<br>") + "<br><br>" +  // Info del cliente
+                                    "<span style='font-weight:bold; color:gray;'>Historial de compras:</span><br>" +
+                                    historial.replace("\n", "<br>") +               // Historial de compras
+                                    "</html>",
+                            Color.WHITE, 25
+                    );
                     clientLabel1.setFont(new Font("Arial", Font.PLAIN, 20));
                     clientLabel1.setForeground(ColorsNk.Verde_Nk);
                     clientLabel1.setBounds(600, 200, 450, 300);
@@ -185,7 +194,7 @@ public class UsersFrame {
                     clientLabel1.setBorderProperties(ColorsNk.Transparent_Nk, 1);
 
                     backgroundc.add(clientLabel1);
-                    backgroundc.setComponentZOrder(clientLabel1, 0);
+                    backgroundc.setComponentZOrder(clientLabel1, 0); // Asegurar que esté al frente
                     clientLabel1.setHorizontalAlignment(SwingConstants.LEFT);
                     clientLabel1.setVerticalAlignment(SwingConstants.TOP);
 
@@ -206,7 +215,21 @@ public class UsersFrame {
                     clientLabel1 = null;
                 }
             }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // Mostrar MessageBox indicando el cliente seleccionado
+                JOptionPane.showMessageDialog(
+                        ventana1,
+                        "¡Eres ahora " + BaseTienda.DevolverNombre(1) + "!",
+                        "Información de cliente",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                idClienteSeleccionado = 1 ;
+
+            }
         });
+
         // CLIENT NUMBER TWO
 
         ImageIcon resizedImage1 = resizeimage(BaseTienda.DevolverCliente(2), 0.5);
@@ -225,29 +248,35 @@ public class UsersFrame {
         backgroundc.add(LearnMore1);
 
         product2.addMouseListener(new MouseAdapter() {
-            RoundedBorder clientLabel1 = null; // Declarado fuera del MouseListener
+            RoundedBorder clientLabel1 = null;
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 // Si no se ha creado el label, lo creamos
                 if (clientLabel1 == null) {
-                    String clientInfo = BaseTienda.DevolverInfoCliente(2);
+                    String clientInfo = BaseTienda.DevolverInfoCliente(2); // Info principal
+                    String historial = BaseTienda.DevolverHistorialCompras(2); // Historial adicional
 
-                    // Crear RoundedBorder
-                    clientLabel1 = new RoundedBorder("<html>" + clientInfo.replace("\n", "<br>") + "</html>", Color.WHITE, 25);
+                    // Crear RoundedBorder con información concatenada
+                    clientLabel1 = new RoundedBorder(
+                            "<html>" +
+                                    clientInfo.replace("\n", "<br>") + "<br><br>" +  // Info del cliente
+                                    "<span style='font-weight:bold; color:gray;'>Historial de compras:</span><br>" +
+                                    historial.replace("\n", "<br>") +               // Historial de compras
+                                    "</html>",
+                            Color.WHITE, 25
+                    );
                     clientLabel1.setFont(new Font("Arial", Font.PLAIN, 20));
                     clientLabel1.setForeground(ColorsNk.Verde_Nk);
-                    clientLabel1.setBounds(20, 200, 450, 300);
+                    clientLabel1.setBounds(50, 200, 450, 300);
 
                     // Configurar propiedades del borde
                     clientLabel1.setBorderProperties(ColorsNk.Transparent_Nk, 1);
 
-                    // Alineamos el texto en la esquina superior izquierda
+                    backgroundc.add(clientLabel1);
+                    backgroundc.setComponentZOrder(clientLabel1, 0); // Asegurar que esté al frente
                     clientLabel1.setHorizontalAlignment(SwingConstants.LEFT);
                     clientLabel1.setVerticalAlignment(SwingConstants.TOP);
-
-                    backgroundc.add(clientLabel1);
-                    backgroundc.setComponentZOrder(clientLabel1, 0); // Aseguramos que esté al frente
 
                     // Redibujar y revalidar
                     backgroundc.revalidate();
@@ -266,9 +295,20 @@ public class UsersFrame {
                     clientLabel1 = null;
                 }
             }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // Mostrar MessageBox indicando el cliente seleccionado
+                JOptionPane.showMessageDialog(
+                        ventana1,
+                        "¡Eres ahora " + BaseTienda.DevolverNombre(2) + "!",
+                        "Información de cliente",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                idClienteSeleccionado = 2 ;
+
+            }
         });
-
-
 
         // CLIENT NUMBER THREE
 
@@ -294,21 +334,29 @@ public class UsersFrame {
             public void mouseEntered(MouseEvent e) {
                 // Si no se ha creado el label, lo creamos
                 if (clientLabel1 == null) {
-                    String clientInfo = BaseTienda.DevolverInfoCliente(3);
+                    String clientInfo = BaseTienda.DevolverInfoCliente(3); // Info principal
+                    String historial = BaseTienda.DevolverHistorialCompras(3); // Historial adicional
 
-                    // Crear RoundedBorder
-                    clientLabel1 = new RoundedBorder("<html>" + clientInfo.replace("\n", "<br>") + "</html>", Color.WHITE, 25);
+                    // Crear RoundedBorder con información concatenada
+                    clientLabel1 = new RoundedBorder(
+                            "<html>" +
+                                    clientInfo.replace("\n", "<br>") + "<br><br>" +  // Info del cliente
+                                    "<span style='font-weight:bold; color:gray;'>Historial de compras:</span><br>" +
+                                    historial.replace("\n", "<br>") +               // Historial de compras
+                                    "</html>",
+                            Color.WHITE, 25
+                    );
                     clientLabel1.setFont(new Font("Arial", Font.PLAIN, 20));
                     clientLabel1.setForeground(ColorsNk.Verde_Nk);
                     clientLabel1.setBounds(200, 200, 450, 300);
 
+                    // Configurar propiedades del borde
                     clientLabel1.setBorderProperties(ColorsNk.Transparent_Nk, 1);
-                    clientLabel1.setHorizontalAlignment(SwingConstants.LEFT);
-                    clientLabel1.setVerticalAlignment(SwingConstants.TOP);
-
 
                     backgroundc.add(clientLabel1);
-                    backgroundc.setComponentZOrder(clientLabel1, 0);
+                    backgroundc.setComponentZOrder(clientLabel1, 0); // Asegurar que esté al frente
+                    clientLabel1.setHorizontalAlignment(SwingConstants.LEFT);
+                    clientLabel1.setVerticalAlignment(SwingConstants.TOP);
 
                     // Redibujar y revalidar
                     backgroundc.revalidate();
@@ -326,6 +374,19 @@ public class UsersFrame {
 
                     clientLabel1 = null;
                 }
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // Mostrar MessageBox indicando el cliente seleccionado
+                JOptionPane.showMessageDialog(
+                        ventana1,
+                        "¡Eres ahora " + BaseTienda.DevolverNombre(3) + "!",
+                        "Información de cliente",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                idClienteSeleccionado = 3 ;
+
             }
         });
 
